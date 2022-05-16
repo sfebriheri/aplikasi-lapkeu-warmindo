@@ -152,7 +152,7 @@ class Auth extends CI_Controller
 				'gambar' => $new_image,
 				'password' => password_hash($this->input->post('password2'), PASSWORD_DEFAULT),
 				'role_id' => 2,
-				'is_active' => 2,
+				'is_active' => 1,
 				'date_created' => time()
 			];
 
