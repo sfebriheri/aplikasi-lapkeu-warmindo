@@ -1,0 +1,242 @@
+// ============================================================
+// SCSS Mixins for LAPKEU System
+// ============================================================
+
+// Flexbox
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Grid
+@mixin grid-auto {
+  display: grid;
+  grid-auto-flow: dense;
+  gap: $space-base;
+}
+
+// Responsive Media Queries
+@mixin xs-only {
+  @media (max-width: $breakpoint-xs) {
+    @content;
+  }
+}
+
+@mixin sm-only {
+  @media (min-width: $breakpoint-sm) and (max-width: $breakpoint-md - 1px) {
+    @content;
+  }
+}
+
+@mixin md-up {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin lg-up {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin xl-up {
+  @media (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+@mixin 2xl-up {
+  @media (min-width: $breakpoint-2xl) {
+    @content;
+  }
+}
+
+@mixin md-down {
+  @media (max-width: $breakpoint-md - 1px) {
+    @content;
+  }
+}
+
+@mixin lg-down {
+  @media (max-width: $breakpoint-lg - 1px) {
+    @content;
+  }
+}
+
+// Text
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Transitions
+@mixin transition($properties...) {
+  transition: $properties $transition-base;
+}
+
+@mixin transition-fast($properties...) {
+  transition: $properties $transition-fast;
+}
+
+// Hover Effects
+@mixin hover-lift {
+  @include transition(transform, box-shadow);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+@mixin hover-shadow {
+  @include transition(box-shadow);
+
+  &:hover {
+    box-shadow: $shadow-lg;
+  }
+}
+
+@mixin hover-opacity {
+  @include transition(opacity);
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// Buttons
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: $font-weight-medium;
+  border: none;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  @include transition(all);
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background-color: $primary-color;
+  color: $text-light;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-dark;
+    box-shadow: $shadow-md;
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background-color: $secondary-color;
+  color: $text-light;
+
+  &:hover:not(:disabled) {
+    background-color: $secondary-dark;
+    box-shadow: $shadow-md;
+  }
+}
+
+@mixin button-outline {
+  @include button-base;
+  background-color: transparent;
+  border: 2px solid $primary-color;
+  color: $primary-color;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-color;
+    color: $text-light;
+  }
+}
+
+// Cards
+@mixin card {
+  background-color: $bg-white;
+  border: 1px solid $border-color;
+  border-radius: $radius-xl;
+  padding: $space-lg;
+  box-shadow: $shadow-sm;
+  @include transition(box-shadow);
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+// Forms
+@mixin form-input {
+  width: 100%;
+  padding: $space-sm $space-base;
+  border: 1px solid $border-color;
+  border-radius: $radius-lg;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  @include transition(border-color, box-shadow);
+
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+  }
+}
+
+// Badges
+@mixin badge($bg-color: $primary-color, $text-color: $text-light) {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+  padding: $space-xs $space-base;
+  background-color: $bg-color;
+  color: $text-color;
+  border-radius: $radius-full;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+}
+
+// Accessibility
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Focus visible
+@mixin focus-visible {
+  &:focus-visible {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+}
