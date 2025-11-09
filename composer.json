@@ -1,23 +1,38 @@
 {
-	"description": "The CodeIgniter framework",
-	"name": "codeigniter/framework",
+	"name": "warmindo/lapkeu-app",
+	"description": "Web-Based Financial Statement System (LAPKEU) for PT. Warmindo - CodeIgniter 4",
 	"type": "project",
-	"homepage": "https://codeigniter.com",
+	"homepage": "https://github.com/sfebriheri/aplikasi-lapkeu-warmindo",
 	"license": "MIT",
-	"support": {
-		"forum": "http://forum.codeigniter.com/",
-		"wiki": "https://github.com/bcit-ci/CodeIgniter/wiki",
-		"slack": "https://codeigniterchat.slack.com",
-		"source": "https://github.com/bcit-ci/CodeIgniter"
-	},
 	"require": {
-		"php": ">=5.3.7"
-	},
-	"suggest": {
-		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
+		"php": "^7.4 || ^8.0",
+		"codeigniter4/framework": "^4.5",
+		"dompdf/dompdf": "^2.0"
 	},
 	"require-dev": {
-		"mikey179/vfsStream": "1.1.*",
-		"phpunit/phpunit": "4.* || 5.*"
-	}
+		"fakerphp/faker": "^1.9",
+		"phpunit/phpunit": "^9.5",
+		"mikey179/vfsstream": "^1.6"
+	},
+	"autoload": {
+		"psr-4": {
+			"App\\": "app/",
+			"Config\\": "app/Config/"
+		},
+		"exclude-from-classmap": [
+			"**/Database/Migrations/**"
+		]
+	},
+	"scripts": {
+		"test": "phpunit",
+		"post-update-cmd": [
+			"@composer dump-autoload"
+		]
+	},
+	"support": {
+		"issues": "https://github.com/sfebriheri/aplikasi-lapkeu-warmindo/issues",
+		"source": "https://github.com/sfebriheri/aplikasi-lapkeu-warmindo"
+	},
+	"minimum-stability": "stable",
+	"prefer-stable": true
 }

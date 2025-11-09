@@ -1,0 +1,304 @@
+// ============================================================
+// Responsive Design Styles for LAPKEU System
+// ============================================================
+
+@import 'variables.scss';
+@import 'mixins.scss';
+
+// Container
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $space-base;
+
+  @include md-up {
+    padding: 0 $space-lg;
+  }
+
+  @include lg-up {
+    padding: 0 $space-2xl;
+  }
+}
+
+// Grid System
+.grid {
+  display: grid;
+  gap: $space-base;
+
+  @include md-up {
+    gap: $space-lg;
+  }
+
+  &--cols-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  &--cols-2 {
+    @include md-up {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &--cols-3 {
+    @include lg-up {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &--cols-4 {
+    @include 2xl-up {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+// Responsive Display
+@include md-down {
+  .hidden-mobile {
+    display: none;
+  }
+}
+
+@include md-up {
+  .hidden-desktop {
+    display: none;
+  }
+}
+
+// Sidebar Layout
+.layout {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  @include lg-up {
+    flex-direction: row;
+  }
+}
+
+.sidebar {
+  width: 100%;
+
+  @include lg-up {
+    width: 250px;
+    flex-shrink: 0;
+  }
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+}
+
+// Navigation
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-base $space-lg;
+  background-color: $bg-white;
+  border-bottom: 1px solid $border-color;
+
+  @include md-up {
+    padding: $space-lg $space-2xl;
+  }
+}
+
+.nav {
+  display: none;
+  flex-direction: column;
+  gap: $space-base;
+
+  @include lg-up {
+    display: flex;
+    flex-direction: row;
+    gap: $space-xl;
+  }
+
+  a {
+    padding: $space-sm $space-base;
+    color: $text-dark;
+    @include transition(color);
+
+    &:hover,
+    &.active {
+      color: $primary-color;
+    }
+  }
+}
+
+// Hero Section
+.hero {
+  background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+  color: $text-light;
+  padding: $space-2xl $space-lg;
+  text-align: center;
+
+  @include md-up {
+    padding: 4rem $space-2xl;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: $space-lg;
+
+    @include lg-up {
+      font-size: 3rem;
+    }
+  }
+
+  p {
+    font-size: $font-size-lg;
+    margin-bottom: $space-lg;
+  }
+}
+
+// Cards Grid
+.cards {
+  display: grid;
+  gap: $space-base;
+  grid-template-columns: 1fr;
+
+  @include sm-only {
+    grid-template-columns: 1fr;
+  }
+
+  @include md-up {
+    gap: $space-lg;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include lg-up {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include xl-up {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Responsive Tables
+.table-responsive {
+  overflow-x: auto;
+
+  @include md-up {
+    overflow-x: visible;
+  }
+}
+
+// Forms Responsive
+.form-row {
+  display: grid;
+  gap: $space-base;
+  grid-template-columns: 1fr;
+
+  @include md-up {
+    gap: $space-lg;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include lg-up {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &--full {
+    @include md-up {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// Buttons Layout
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+
+  @include md-up {
+    flex-direction: row;
+    gap: $space-base;
+  }
+
+  .btn {
+    flex: 1;
+
+    @include md-up {
+      flex: auto;
+    }
+  }
+}
+
+// Footer
+.footer {
+  background-color: $text-dark;
+  color: $text-light;
+  padding: $space-xl $space-lg;
+  margin-top: auto;
+
+  @include md-up {
+    padding: $space-2xl;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+
+    @include md-up {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  a {
+    color: $primary-light;
+
+    &:hover {
+      color: $text-light;
+    }
+  }
+}
+
+// Print Styles
+@media print {
+  .no-print {
+    display: none;
+  }
+
+  body {
+    background-color: $text-light;
+    color: $text-dark;
+  }
+
+  .card {
+    box-shadow: none;
+    border: 1px solid $text-dark;
+    page-break-inside: avoid;
+  }
+}
+
+// Dark Mode (Optional)
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+  }
+
+  .card {
+    background-color: #2d2d2d;
+    border-color: #404040;
+  }
+
+  input, textarea, select {
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+    border-color: #404040;
+  }
+}
+
+// Accessibility - Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

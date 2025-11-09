@@ -1,0 +1,402 @@
+// ============================================================
+// Reusable Component Styles for LAPKEU System
+// ============================================================
+
+@import 'variables.scss';
+@import 'mixins.scss';
+
+// Buttons
+.btn {
+  @include button-base;
+  padding: $space-sm $space-lg;
+  font-size: $font-size-base;
+
+  &--primary {
+    @include button-primary;
+  }
+
+  &--secondary {
+    @include button-secondary;
+  }
+
+  &--outline {
+    @include button-outline;
+  }
+
+  &--small {
+    padding: $space-xs $space-md;
+    font-size: $font-size-sm;
+  }
+
+  &--large {
+    padding: $space-md $space-xl;
+    font-size: $font-size-lg;
+  }
+
+  &--full {
+    width: 100%;
+  }
+}
+
+// Cards
+.card {
+  @include card;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $space-lg;
+    padding-bottom: $space-lg;
+    border-bottom: 1px solid $border-color;
+
+    h3 {
+      margin: 0;
+    }
+  }
+
+  &__body {
+    margin-bottom: $space-base;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__footer {
+    margin-top: $space-lg;
+    padding-top: $space-lg;
+    border-top: 1px solid $border-color;
+    @include flex-between;
+  }
+}
+
+// Alerts
+.alert {
+  padding: $space-md;
+  border-radius: $radius-lg;
+  border-left: 4px solid;
+  margin-bottom: $space-base;
+  @include flex-between;
+
+  &--success {
+    background-color: #d1fae5;
+    border-color: $success-color;
+    color: #047857;
+  }
+
+  &--danger {
+    background-color: #fee2e2;
+    border-color: $danger-color;
+    color: #991b1b;
+  }
+
+  &--warning {
+    background-color: #fef3c7;
+    border-color: $warning-color;
+    color: #92400e;
+  }
+
+  &--info {
+    background-color: #dbeafe;
+    border-color: $info-color;
+    color: #1e40af;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: $font-size-lg;
+    color: inherit;
+    padding: 0;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+// Badges
+.badge {
+  @include badge;
+
+  &--primary {
+    background-color: $primary-color;
+    color: $text-light;
+  }
+
+  &--secondary {
+    background-color: $secondary-color;
+    color: $text-light;
+  }
+
+  &--success {
+    background-color: $success-color;
+    color: $text-light;
+  }
+
+  &--danger {
+    background-color: $danger-color;
+    color: $text-light;
+  }
+
+  &--warning {
+    background-color: $warning-color;
+    color: $text-dark;
+  }
+
+  &--info {
+    background-color: $info-color;
+    color: $text-light;
+  }
+}
+
+// Forms
+.form {
+  &__group {
+    margin-bottom: $space-lg;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: $space-sm;
+    font-weight: $font-weight-medium;
+    color: $text-dark;
+  }
+
+  &__input,
+  &__textarea,
+  &__select {
+    @include form-input;
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  &__hint {
+    display: block;
+    margin-top: $space-sm;
+    font-size: $font-size-sm;
+    color: $text-muted;
+  }
+
+  &__error {
+    display: block;
+    margin-top: $space-sm;
+    font-size: $font-size-sm;
+    color: $danger-color;
+  }
+
+  &__help {
+    position: relative;
+
+    .help-icon {
+      cursor: help;
+      color: $info-color;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Tables
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: $space-lg;
+
+  th {
+    background-color: $border-light;
+    padding: $space-md;
+    text-align: left;
+    font-weight: $font-weight-semibold;
+    color: $text-dark;
+    border-bottom: 2px solid $border-color;
+  }
+
+  td {
+    padding: $space-md;
+    border-bottom: 1px solid $border-color;
+  }
+
+  tr {
+    @include transition(background-color);
+
+    &:hover {
+      background-color: $border-light;
+    }
+  }
+
+  tbody tr:last-child td {
+    border-bottom: 2px solid $border-color;
+  }
+}
+
+// Modals
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($text-dark, 0.5);
+  z-index: $z-modal-backdrop;
+
+  &.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__content {
+    background-color: $bg-white;
+    border-radius: $radius-xl;
+    box-shadow: $shadow-lg;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    z-index: $z-modal;
+    animation: modalSlideIn 250ms ease-out;
+  }
+
+  &__header {
+    padding: $space-lg;
+    border-bottom: 1px solid $border-color;
+    @include flex-between;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  &__body {
+    padding: $space-lg;
+  }
+
+  &__footer {
+    padding: $space-lg;
+    border-top: 1px solid $border-color;
+    @include flex-between;
+    gap: $space-base;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: $font-size-xl;
+    color: $text-muted;
+    padding: 0;
+
+    &:hover {
+      color: $text-dark;
+    }
+  }
+}
+
+// Breadcrumbs
+.breadcrumb {
+  @include flex-center;
+  gap: $space-sm;
+  margin-bottom: $space-lg;
+  list-style: none;
+  padding: 0;
+
+  a {
+    color: $primary-color;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .separator {
+    color: $text-muted;
+  }
+
+  .active {
+    color: $text-muted;
+  }
+}
+
+// Pagination
+.pagination {
+  @include flex-center;
+  gap: $space-sm;
+  list-style: none;
+  padding: 0;
+  margin: $space-lg 0;
+
+  a, span {
+    padding: $space-sm $space-md;
+    border: 1px solid $border-color;
+    border-radius: $radius-base;
+    color: $primary-color;
+    @include transition(all);
+
+    &:hover {
+      background-color: $primary-color;
+      color: $text-light;
+    }
+  }
+
+  .disabled {
+    color: $text-muted;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  .active {
+    background-color: $primary-color;
+    color: $text-light;
+  }
+}
+
+// Loading Spinner
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid $border-light;
+  border-top-color: $primary-color;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+
+  &--large {
+    width: 40px;
+    height: 40px;
+    border-width: 4px;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Animations
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,433 @@
+// ============================================================
+// Utility Classes for LAPKEU System
+// ============================================================
+
+@import 'variables.scss';
+@import 'mixins.scss';
+
+// Display
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-grid {
+  display: grid;
+}
+
+// Visibility
+.visibility-hidden {
+  visibility: hidden;
+}
+
+.sr-only {
+  @include sr-only;
+}
+
+// Flex
+.flex-center {
+  @include flex-center;
+}
+
+.flex-between {
+  @include flex-between;
+}
+
+.flex-column {
+  @include flex-column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.gap-xs {
+  gap: $space-xs;
+}
+
+.gap-sm {
+  gap: $space-sm;
+}
+
+.gap-base {
+  gap: $space-base;
+}
+
+.gap-lg {
+  gap: $space-lg;
+}
+
+// Spacing
+@each $i in (xs, sm, base, md, lg, xl, 2xl) {
+  $size: map-get((xs: $space-xs, sm: $space-sm, base: $space-base, md: $space-md, lg: $space-lg, xl: $space-xl, 2xl: $space-2xl), $i);
+
+  // Margin
+  .m-#{$i} {
+    margin: $size;
+  }
+
+  .mt-#{$i} {
+    margin-top: $size;
+  }
+
+  .mr-#{$i} {
+    margin-right: $size;
+  }
+
+  .mb-#{$i} {
+    margin-bottom: $size;
+  }
+
+  .ml-#{$i} {
+    margin-left: $size;
+  }
+
+  .mx-#{$i} {
+    margin-left: $size;
+    margin-right: $size;
+  }
+
+  .my-#{$i} {
+    margin-top: $size;
+    margin-bottom: $size;
+  }
+
+  // Padding
+  .p-#{$i} {
+    padding: $size;
+  }
+
+  .pt-#{$i} {
+    padding-top: $size;
+  }
+
+  .pr-#{$i} {
+    padding-right: $size;
+  }
+
+  .pb-#{$i} {
+    padding-bottom: $size;
+  }
+
+  .pl-#{$i} {
+    padding-left: $size;
+  }
+
+  .px-#{$i} {
+    padding-left: $size;
+    padding-right: $size;
+  }
+
+  .py-#{$i} {
+    padding-top: $size;
+    padding-bottom: $size;
+  }
+}
+
+// Text
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+// Text Color
+.text-primary {
+  color: $primary-color;
+}
+
+.text-secondary {
+  color: $secondary-color;
+}
+
+.text-success {
+  color: $success-color;
+}
+
+.text-danger {
+  color: $danger-color;
+}
+
+.text-warning {
+  color: $warning-color;
+}
+
+.text-info {
+  color: $info-color;
+}
+
+.text-muted {
+  color: $text-muted;
+}
+
+.text-dark {
+  color: $text-dark;
+}
+
+.text-light {
+  color: $text-light;
+}
+
+// Text Weight
+.font-light {
+  font-weight: $font-weight-light;
+}
+
+.font-normal {
+  font-weight: $font-weight-normal;
+}
+
+.font-medium {
+  font-weight: $font-weight-medium;
+}
+
+.font-semibold {
+  font-weight: $font-weight-semibold;
+}
+
+.font-bold {
+  font-weight: $font-weight-bold;
+}
+
+// Text Decoration
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.text-decoration-underline {
+  text-decoration: underline;
+}
+
+// Text Transform
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+// Text Truncate
+.text-truncate {
+  @include text-truncate;
+}
+
+// Background
+.bg-primary {
+  background-color: $primary-color;
+  color: $text-light;
+}
+
+.bg-secondary {
+  background-color: $secondary-color;
+  color: $text-light;
+}
+
+.bg-success {
+  background-color: $success-color;
+  color: $text-light;
+}
+
+.bg-danger {
+  background-color: $danger-color;
+  color: $text-light;
+}
+
+.bg-warning {
+  background-color: $warning-color;
+  color: $text-dark;
+}
+
+.bg-info {
+  background-color: $info-color;
+  color: $text-light;
+}
+
+.bg-light {
+  background-color: $bg-light;
+}
+
+.bg-white {
+  background-color: $bg-white;
+}
+
+.bg-dark {
+  background-color: $text-dark;
+  color: $text-light;
+}
+
+// Border
+.border {
+  border: 1px solid $border-color;
+}
+
+.border-top {
+  border-top: 1px solid $border-color;
+}
+
+.border-bottom {
+  border-bottom: 1px solid $border-color;
+}
+
+.border-left {
+  border-left: 1px solid $border-color;
+}
+
+.border-right {
+  border-right: 1px solid $border-color;
+}
+
+// Border Radius
+.rounded-sm {
+  border-radius: $radius-sm;
+}
+
+.rounded {
+  border-radius: $radius-base;
+}
+
+.rounded-lg {
+  border-radius: $radius-lg;
+}
+
+.rounded-xl {
+  border-radius: $radius-xl;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+// Shadow
+.shadow-none {
+  box-shadow: none;
+}
+
+.shadow-sm {
+  box-shadow: $shadow-sm;
+}
+
+.shadow {
+  box-shadow: $shadow-base;
+}
+
+.shadow-md {
+  box-shadow: $shadow-md;
+}
+
+.shadow-lg {
+  box-shadow: $shadow-lg;
+}
+
+// Opacity
+@for $i from 0 through 10 {
+  .opacity-#{$i * 10} {
+    opacity: $i / 10;
+  }
+}
+
+// Width
+.w-full {
+  width: 100%;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
+.w-1\/3 {
+  width: 33.333%;
+}
+
+.w-2\/3 {
+  width: 66.666%;
+}
+
+.w-1\/4 {
+  width: 25%;
+}
+
+.w-3\/4 {
+  width: 75%;
+}
+
+// Height
+.h-full {
+  height: 100%;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+// Cursor
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+// User Select
+.user-select-none {
+  user-select: none;
+}
+
+.user-select-text {
+  user-select: text;
+}
+
+// Overflow
+.overflow-auto {
+  overflow: auto;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-visible {
+  overflow: visible;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}

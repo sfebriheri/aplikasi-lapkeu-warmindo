@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import SCSS modules */
+@import '../scss/variables.scss';
+@import '../scss/mixins.scss';
+@import '../scss/typography.scss';
+@import '../scss/components.scss';
+@import '../scss/utilities.scss';
+@import '../scss/responsive.scss';
