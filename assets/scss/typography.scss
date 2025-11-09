@@ -1,0 +1,177 @@
+// ============================================================
+// Typography Styles for LAPKEU System
+// ============================================================
+
+@import 'variables.scss';
+
+// Body
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-normal;
+  color: $text-dark;
+  background-color: $bg-light;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  margin-bottom: $space-base;
+}
+
+h1 {
+  font-size: 2.25rem;
+
+  @include md-down {
+    font-size: 1.875rem;
+  }
+}
+
+h2 {
+  font-size: 1.875rem;
+
+  @include md-down {
+    font-size: 1.5rem;
+  }
+}
+
+h3 {
+  font-size: 1.5rem;
+
+  @include md-down {
+    font-size: 1.25rem;
+  }
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.125rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+// Paragraphs
+p {
+  margin-bottom: $space-base;
+  line-height: $line-height-relaxed;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Links
+a {
+  color: $primary-color;
+  text-decoration: none;
+  @include transition(color, opacity);
+
+  &:hover {
+    color: $primary-dark;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+}
+
+// Lists
+ul, ol {
+  margin-bottom: $space-base;
+  padding-left: $space-xl;
+
+  li {
+    margin-bottom: $space-sm;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+dl {
+  margin-bottom: $space-base;
+
+  dt {
+    font-weight: $font-weight-semibold;
+    margin-top: $space-base;
+  }
+
+  dd {
+    margin-left: $space-xl;
+    margin-bottom: $space-base;
+  }
+}
+
+// Code
+code {
+  font-family: $font-family-mono;
+  font-size: 0.875em;
+  background-color: $border-light;
+  padding: $space-xs $space-sm;
+  border-radius: $radius-sm;
+  color: $danger-color;
+}
+
+pre {
+  background-color: $text-dark;
+  color: $text-light;
+  padding: $space-lg;
+  border-radius: $radius-lg;
+  overflow-x: auto;
+  margin-bottom: $space-base;
+
+  code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+  }
+}
+
+// Blockquote
+blockquote {
+  border-left: 4px solid $primary-color;
+  padding-left: $space-lg;
+  margin-left: 0;
+  margin-bottom: $space-base;
+  font-style: italic;
+  color: $text-muted;
+}
+
+// Small text
+small {
+  font-size: $font-size-sm;
+}
+
+// Strong
+strong, b {
+  font-weight: $font-weight-semibold;
+}
+
+// Emphasis
+em, i {
+  font-style: italic;
+}
+
+// Marked/Highlighted
+mark {
+  background-color: #fff3cd;
+  padding: $space-xs $space-sm;
+  border-radius: $radius-sm;
+}
+
+// Horizontal rule
+hr {
+  border: none;
+  border-top: 1px solid $border-color;
+  margin: $space-xl 0;
+}

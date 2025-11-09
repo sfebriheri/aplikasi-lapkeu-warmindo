@@ -23,7 +23,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://localhost/tugas-akhir/';
+// Load environment variables
+$env_file = APPPATH . '../.env';
+if (file_exists($env_file)) {
+	$env = parse_ini_file($env_file);
+	$config['base_url'] = isset($env['APP_URL']) ? $env['APP_URL'] : 'https://localhost/aplikasi-lapkeu-warmindo/';
+} else {
+	$config['base_url'] = 'https://localhost/aplikasi-lapkeu-warmindo/';
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -324,7 +331,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = isset($env['ENCRYPTION_KEY']) ? $env['ENCRYPTION_KEY'] : 'your_encryption_key_here_must_be_32_chars_long';
 
 /*
 |--------------------------------------------------------------------------
@@ -432,7 +439,7 @@ $config['standardize_newlines'] = FALSE;
 |          for backwards compatibility purposes!
 |
 */
-$config['global_xss_filtering'] = FALSE;
+$config['global_xss_filtering'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
@@ -448,7 +455,7 @@ $config['global_xss_filtering'] = FALSE;
 | 'csrf_regenerate' = Regenerate token on every submission
 | 'csrf_exclude_uris' = Array of URIs which ignore CSRF checks
 */
-$config['csrf_protection'] = FALSE;
+$config['csrf_protection'] = TRUE;
 $config['csrf_token_name'] = 'csrf_test_name';
 $config['csrf_cookie_name'] = 'csrf_cookie_name';
 $config['csrf_expire'] = 7200;

@@ -1,0 +1,67 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# CodeIgniter
+application/cache/*
+!application/cache/index.html
+application/logs/*
+!application/logs/index.html
+user_guide_src/build/*
+user_guide_src/cilexer/build/*
+user_guide_src/cilexer/dist/*
+user_guide_src/cilexer/pycilexer.egg-info/*
+
+# Composer
+vendor/
+composer.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.project
+.settings/
+*.sublime-workspace
+
+# Node (if using npm)
+node_modules/
+package-lock.json
+npm-debug.log
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Uploaded files
+assets/img/profile/*
+!assets/img/profile/.gitkeep
+assets/uploads/*
+!assets/uploads/.gitkeep
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Logs
+*.log
+
+# Database backups
+*.sql
+*.sql.bak
+*.db
+*.sqlite
+
+# Private keys and secrets
+*.pem
+*.key
+*.pub
+
+# Build artifacts
+/build/
+/dist/

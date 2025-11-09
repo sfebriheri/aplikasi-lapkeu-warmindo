@@ -73,24 +73,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+// Load .env file if it exists
+$env_file = APPPATH . '../.env';
+if (file_exists($env_file)) {
+	$env = parse_ini_file($env_file);
+} else {
+	$env = array(
+		'DB_DRIVER' => 'postgre',
+		'DB_HOST' => 'localhost',
+		'DB_USER' => 'postgres',
+		'DB_PASS' => 'your_password',
+		'DB_NAME' => 'lapkeu_warmindo',
+		'DB_PREFIX' => ''
+	);
+}
+
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'tugas-akhir-master',
-	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
+	'hostname' => $env['DB_HOST'],
+	'username' => $env['DB_USER'],
+	'password' => $env['DB_PASS'],
+	'database' => $env['DB_NAME'],
+	'dbdriver' => $env['DB_DRIVER'],
+	'dbprefix' => isset($env['DB_PREFIX']) ? $env['DB_PREFIX'] : '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
 	'cachedir' => '',
 	'char_set' => 'utf8',
-	'dbcollat' => 'utf8_general_ci',
+	'dbcollat' => 'utf8_unicode_ci',
 	'swap_pre' => '',
 	'encrypt' => FALSE,
 	'compress' => FALSE,
-	'stricton' => FALSE,
+	'stricton' => TRUE,
 	'failover' => array(),
 	'save_queries' => TRUE
 );
