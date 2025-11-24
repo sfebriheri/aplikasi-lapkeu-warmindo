@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use App\Libraries\CurrencyHandler;
 
 /**
  * Accounting Model
@@ -174,7 +175,7 @@ class AccountingModel extends Model
     }
 
     /**
-     * Calculate account balance from transactions
+     * Calculate account balance from transactions with decimal precision
      */
     public function calculateAccountBalance(int $accountId): array
     {
@@ -189,14 +190,15 @@ class AccountingModel extends Model
 
         $result = $query->getRowArray();
 
-        $totalDebit = $result['total_debit'] ?? 0;
-        $totalCredit = $result['total_credit'] ?? 0;
-        $currentBalance = $totalDebit - $totalCredit;
+        // Use CurrencyHandler for precise decimal arithmetic
+        $totalDebit = CurrencyHandler::create($result['total_debit'] ?? 0);
+        $totalCredit = CurrencyHandler::create($result['total_credit'] ?? 0);
+        $currentBalance = CurrencyHandler::subtract($totalDebit, $totalCredit);
 
         return [
-            'total_debit' => $totalDebit,
-            'total_credit' => $totalCredit,
-            'current_balance' => $currentBalance
+            'total_debit' => CurrencyHandler::toNumericString($totalDebit),
+            'total_credit' => CurrencyHandler::toNumericString($totalCredit),
+            'current_balance' => CurrencyHandler::toNumericString($currentBalance)
         ];
     }
 
@@ -281,15 +283,23 @@ class AccountingModel extends Model
     }
 
     /**
-     * Update account balance
+     * Update account balance with decimal precision
+     *
+     * @param int $accountId Account ID
+     * @param int|float|string $currentBalance Current balance amount
+     * @param int|float|string $debitBalance Debit balance amount
+     * @param int|float|string $creditBalance Credit balance amount
+     * @param string|null $period Period (YYYY-MM format)
+     * @return bool
      */
-    public function updateAccountBalance(int $accountId, float $currentBalance, float $debitBalance, float $creditBalance, ?string $period = null): bool
+    public function updateAccountBalance(int $accountId, $currentBalance, $debitBalance, $creditBalance, ?string $period = null): bool
     {
+        // Convert to numeric strings using CurrencyHandler to ensure precision
         $data = [
             'account_id' => $accountId,
-            'current_balance' => $currentBalance,
-            'debit_balance' => $debitBalance,
-            'credit_balance' => $creditBalance,
+            'current_balance' => CurrencyHandler::toNumericString($currentBalance),
+            'debit_balance' => CurrencyHandler::toNumericString($debitBalance),
+            'credit_balance' => CurrencyHandler::toNumericString($creditBalance),
             'period' => $period ?? date('Y-m'),
             'updated_at' => date('Y-m-d H:i:s')
         ];
@@ -307,7 +317,7 @@ class AccountingModel extends Model
     }
 
     /**
-     * Get accounting summary (assets, liabilities, equity)
+     * Get accounting summary (assets, liabilities, equity) with decimal precision
      */
     public function getAccountingSummary(): array
     {
@@ -320,7 +330,7 @@ class AccountingModel extends Model
             ->where('coa.account_type', 'Asset')
             ->get()
             ->getRowArray();
-        $summary['total_assets'] = $assets['total'] ?? 0;
+        $summary['total_assets'] = CurrencyHandler::toNumericString($assets['total'] ?? 0);
 
         // Get total liabilities
         $liabilities = $this->db->table('account_balance ab')
@@ -329,7 +339,7 @@ class AccountingModel extends Model
             ->where('coa.account_type', 'Liability')
             ->get()
             ->getRowArray();
-        $summary['total_liabilities'] = $liabilities['total'] ?? 0;
+        $summary['total_liabilities'] = CurrencyHandler::toNumericString($liabilities['total'] ?? 0);
 
         // Get total equity
         $equity = $this->db->table('account_balance ab')
@@ -338,7 +348,7 @@ class AccountingModel extends Model
             ->where('coa.account_type', 'Equity')
             ->get()
             ->getRowArray();
-        $summary['total_equity'] = $equity['total'] ?? 0;
+        $summary['total_equity'] = CurrencyHandler::toNumericString($equity['total'] ?? 0);
 
         // Get total revenue
         $revenue = $this->db->table('account_balance ab')
@@ -347,7 +357,7 @@ class AccountingModel extends Model
             ->where('coa.account_type', 'Revenue')
             ->get()
             ->getRowArray();
-        $summary['total_revenue'] = $revenue['total'] ?? 0;
+        $summary['total_revenue'] = CurrencyHandler::toNumericString($revenue['total'] ?? 0);
 
         // Get total expenses
         $expenses = $this->db->table('account_balance ab')
@@ -356,10 +366,13 @@ class AccountingModel extends Model
             ->where('coa.account_type', 'Expense')
             ->get()
             ->getRowArray();
-        $summary['total_expenses'] = $expenses['total'] ?? 0;
+        $summary['total_expenses'] = CurrencyHandler::toNumericString($expenses['total'] ?? 0);
 
-        // Calculate net income
-        $summary['net_income'] = $summary['total_revenue'] - $summary['total_expenses'];
+        // Calculate net income with precision
+        $revenue = CurrencyHandler::create($summary['total_revenue']);
+        $expenses = CurrencyHandler::create($summary['total_expenses']);
+        $netIncome = CurrencyHandler::subtract($revenue, $expenses);
+        $summary['net_income'] = CurrencyHandler::toNumericString($netIncome);
 
         return $summary;
     }
