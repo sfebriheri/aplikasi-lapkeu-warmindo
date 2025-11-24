@@ -31,7 +31,8 @@
 	<div class="row">
 		<div class="mt-2 mt-md-0 col-6 col-md-6 col-xl-2">	
 				
-					<form method="post" action="<?= base_url();?>labarugi/cetak_penutup">
+					<form method="post" action="<?= base_url();?>
+                      <?= csrf_field() ?>labarugi/cetak_penutup">
 				  					<!-- <input type="text" name="akun" id="akun" value="" hidden> -->
 				  					<?php if ($this->input->post('tanggal_awal') && $this->input->post('akun')) : ?>
 				  						<input type="text" name="tanggal_awal" value="<?= $t_aw; ?>" hidden>
@@ -67,7 +68,8 @@
 		  			</form>
 				</div>			
 		<div class="col-12 col-xl-6">
-			<form action="" method="post" class="form-row align-items-center">										  	
+			<form action="" method="post" class="form-row align-items-center">
+                      <?= csrf_field() ?>										  	
 						<div class="col-12 col-sm-5">
 							<div class="form ">
 					
@@ -102,7 +104,9 @@
 	</div>
 				<div class="row">
 					<div class="col offset-6">
-						<?= form_error ('tahun_post','<small class="text-danger pl-3">','</small>'); ?> 
+						<?php if(session('errors.tahun_post')): ?>
+                         <small class="text-danger pl-3"><?= session('errors.tahun_post'); ?></small>
+                       <?php endif; ?> 
 					</div>
 				</div>
 			</div>

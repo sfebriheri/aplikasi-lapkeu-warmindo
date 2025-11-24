@@ -46,6 +46,7 @@
 							<?php endif; ?>
 							
 								<form action="" method="post">
+                      <?= csrf_field() ?>
 									<div class="input-group">
 									   <input type="text" class="form-control" placeholder="Cari data jurnal" name="katakunci" value="">
 									  
@@ -61,6 +62,7 @@
 		    			<div class="row mb-2">
 			    			<div class="col-12 col-xl-6">
 			    				<form method="post" class="form-row align-items-center">
+                      <?= csrf_field() ?>
 									<div class="col-12 col-sm-12 mb-2 mb-sm-2 col-md-5">
 											<div class="form">
 											    <input type="date" class="form-control" name="tanggal_awal" value="<?= $this->input->post('tanggal_awal') ?>">
@@ -83,6 +85,7 @@
 						
 							<div class="col-12 col-xl-6">
 								<form action="" method="post" class="form-row align-items-center">
+                      <?= csrf_field() ?>
 										<div class="col-10 col-sm-10 mb-2 mb-sm-2 mb-md-0 col-md-5">
 											<div class="form">
 												<select class="custom-select" id="bulan_post" name="bulan_post" disabled>

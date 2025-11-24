@@ -1,10 +1,10 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-<?php if ($this->session->flashdata('pesan_sukses')) : ?>
+<?php if (session('pesan_sukses')) : ?>
 			<div class="row">
 				<div class="col-6">
 					<div class="alert alert-success alert-dismissible fade show" role="alert">
-						  Data Transaksi<strong> Berhasil</strong> <?= $this->session->flashdata('pesan_sukses'); ?>
+						  Data Transaksi<strong> Berhasil</strong> <?= session('pesan_sukses'); ?>
 							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							    <span aria-hidden="true">&times;</span>
 							  </button>
@@ -32,28 +32,28 @@
 		          		</div>
 		          		<div class="form-group col-5">
 		          			<h5>Tanggal</h3>
-		          			<input type="date" class="form-control" name="tanggal_transaksi" id="tanggal_transaksi" value="<?= set_value('tanggal_transaksi'); ?>" >
-		          			<small class="form-text text-danger"><?= form_error('tanggal_transaksi'); ?></small>
+		          			<input type="date" class="form-control" name="tanggal_transaksi" id="tanggal_transaksi" value="<?= old('tanggal_transaksi'); ?>" >
+		          			<small class="form-text text-danger"><?php if(session('errors.tanggal_transaksi')): ?><?= session('errors.tanggal_transaksi'); ?><?php endif; ?></small>
 		          		</div>		
 		          	</div>
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col-5">
 		          			<h5>Akun</h3>
 		          			<input type="text" class="form-control" name="akun" id="akun"  value="" readonly>
-		          			<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
 		          		
 		          		</div>
 		          		<div class="form-group col-5">
 		          			<h5>Bukti Transaksi</h3>
-		          			<input type="text" class="form-control" name="bukti_transaksi" id="bukti_transaksi"  value="<?= set_value('bukti_transaksi'); ?>" >
-		          			<small class="form-text text-danger"><?= form_error('bukti_transaksi'); ?></small>
+		          			<input type="text" class="form-control" name="bukti_transaksi" id="bukti_transaksi"  value="<?= old('bukti_transaksi'); ?>" >
+		          			<small class="form-text text-danger"><?php if(session('errors.bukti_transaksi')): ?><?= session('errors.bukti_transaksi'); ?><?php endif; ?></small>
 		          		</div>
 		          	</div>
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col-5">
 		          			<h5>Keterangan</h3>
-		          			<input type="text" class="form-control" name="keterangan" id="keterangan" value="<?= set_value('keterangan'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('keterangan'); ?></small>
+		          			<input type="text" class="form-control" name="keterangan" id="keterangan" value="<?= old('keterangan'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.keterangan')): ?><?= session('errors.keterangan'); ?><?php endif; ?></small>
 		          			
 		          		</div>
 		          		<div class="form-group col-5">
@@ -68,15 +68,15 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col-2">
 		          			<h5>Debit</h3>
-		          			<input type="text" class="form-control" name="debit" id="debit" value="<?= set_value('debit'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('debit'); ?></small>
+		          			<input type="text" class="form-control" name="debit" id="debit" value="<?= old('debit'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.debit')): ?><?= session('errors.debit'); ?><?php endif; ?></small>
 		       
 		          		</div>
 
 		          		<div class="form-group col-2">
 		          			<h5>Kredit</h3>
-		          			<input type="text" class="form-control" name="kredit" id="kredit" value="<?= set_value('kredit'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('kredit'); ?></small>
+		          			<input type="text" class="form-control" name="kredit" id="kredit" value="<?= old('kredit'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.kredit')): ?><?= session('errors.kredit'); ?><?php endif; ?></small>
 		          			
 		          		</div>
 		          		<div class="form-group col-5">

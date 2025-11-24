@@ -43,19 +43,19 @@
                  <div class="form-group col-lg-6">
                       <h5>Kode Akun</h5>
                       <input type="text" class="form-control" name="kode_akun" id="kode_al" value="<?= $kode_al; ?>" readonly disabled>
-                      <small class="form-text text-danger"><?= form_error('akun'); ?></small>
+                      <small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
                       <input type="text" class="form-control" name="kode_akun" id="kode_at" value="<?= $kode_at; ?>" hidden readonly disabled>
-                      <small class="form-text text-danger"><?= form_error('akun'); ?></small>
+                      <small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
                       <input type="text" class="form-control" name="kode_akun" id="kode_k" value="<?= $kode_k; ?>" hidden readonly disabled>
-                      <small class="form-text text-danger"><?= form_error('akun'); ?></small>
+                      <small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
                       <input type="text" class="form-control" name="kode_akun" id="kode_ek" value="<?= $kode_ek; ?>" hidden readonly disabled>
-                      <small class="form-text text-danger"><?= form_error('akun'); ?></small>
+                      <small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
                       <input type="text" class="form-control" name="kode_akun" id="kode_p" value="<?= $kode_p; ?>" hidden readonly disabled>
-                      <small class="form-text text-danger"><?= form_error('akun'); ?></small>
+                      <small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
                       <input type="text" class="form-control" name="kode_akun" id="kode_b" value="<?= $kode_b; ?>" hidden readonly disabled>
-                      <small class="form-text text-danger"><?= form_error('akun'); ?></small>
+                      <small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
                       <input type="text" class="form-control" name="kode_akun" id="kode_pjk" value="<?= $kode_pjk; ?>" hidden readonly disabled>
-                      <small class="form-text text-danger"><?= form_error('akun'); ?></small>
+                      <small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
               
                   
                   </div>
@@ -79,7 +79,7 @@
             <div class="form-row">
               <div class="form-group col-lg-6">
                   <h5>Akun Perkiraan</h5>
-                  <input type="text" class="form-control" name="akun" id="akun"  value="<?= set_value('akun'); ?>">
+                  <input type="text" class="form-control" name="akun" id="akun"  value="<?= old('akun'); ?>">
               </div>
               
             </div>

@@ -34,7 +34,8 @@
 	          		<?php endif ?>
 	          		
 	          		
-	          			<form method="post" action="<?= base_url();?>Per_modal/cetak_permodal">
+	          			<form method="post" action="<?= base_url();?>
+                      <?= csrf_field() ?>Per_modal/cetak_permodal">
 	          					<!-- <input type="text" name="akun" id="akun" value="" hidden> -->
 	          					<?php if ($this->input->post('tanggal_awal') && $this->input->post('akun')) : ?>
 	          						<input type="text" name="tanggal_awal" value="<?= $this->input->post('tanggal_awal'); ?>" hidden>
@@ -81,6 +82,7 @@
 	<div class="row mt-2">	
 		<div class="col-12 col-xl-6">
 			<form method="post" class="form-row align-items-center">
+                      <?= csrf_field() ?>
 				<div class="col-12 col-sm-5 mb-2 mb-xl-0">
 						<div class="form">
 						    <input type="date" class="form-control" name="tanggal_awal" value="<?= $this->input->post('tanggal_awal') ?>">
@@ -104,6 +106,7 @@
 		</div>
 		<div class="col-12 col-xl-6">
 			<form action="" method="post" class="form-row align-items-center">
+                      <?= csrf_field() ?>
 						<div class="col-10 mb-2 mb-sm-0 col-sm-5">
 							<div class="form">
 								<select class="custom-select" id="bulan_post" name="bulan_post" disabled>
@@ -161,7 +164,9 @@
 	          
 	          	<div class="row">
 	          		<div class="col offset-3">
-	          			<?= form_error ('tahun_post','<small class="text-danger pl-3">','</small>'); ?> 
+	          			<?php if(session('errors.tahun_post')): ?>
+                         <small class="text-danger pl-3"><?= session('errors.tahun_post'); ?></small>
+                       <?php endif; ?> 
 	          		</div>
 	          	</div>
 

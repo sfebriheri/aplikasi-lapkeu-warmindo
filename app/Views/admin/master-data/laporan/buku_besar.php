@@ -1,11 +1,11 @@
 <div class="container-fluid">
 <div class="row">
 
-	<?php if ($this->session->flashdata('flash')) : ?>
+	<?php if (session('flash')) : ?>
 			
 				<div class="col-6">
 					<div class="alert alert-success alert-dismissible fade show" role="alert">
-						  Data Transaksi<strong> Berhasil</strong> <?= $this->session->flashdata('flash'); ?>
+						  Data Transaksi<strong> Berhasil</strong> <?= session('flash'); ?>
 							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							    <span aria-hidden="true">&times;</span>
 							  </button>
@@ -46,7 +46,8 @@
 		<div class="col-12 col-sm-6 mb-2 mb-xl-0">
 	<?php endif ?>
 	
-		<form method="post" action="<?= base_url();?>buku_besar/pdf">
+		<form method="post" action="<?= base_url();?>
+                      <?= csrf_field() ?>buku_besar/pdf">
 				<!-- <input type="text" name="akun" id="akun" value="" hidden> -->
 				<?php if ($this->input->post('tanggal_awal') && $this->input->post('akun')) : ?>
 					<input type="text" name="tanggal_awal" value="<?= $t_aw; ?>" hidden>
@@ -86,6 +87,7 @@
 	</div>
 	<div class="col-12 col-sm-8 col-md-8 mb-2 mb-xl-0 col-xl-5">
 		<form action="" method="post">
+                      <?= csrf_field() ?>
 				<div class="input-group">
 					  <select class="custom-select" id="kode_akun" name="kode_akun">
 					    <option value="" selected >-- Pilih Kode Akun --</option>
@@ -131,6 +133,7 @@
 <div class="row">
 	<div class="col-12 col-xl-6">
 		<form action="" method="post" class="form-row align-items-center text-center">
+                      <?= csrf_field() ?>
 			<div class="col-12 col-sm-5 mb-2 mb-xl-0">
 				<div class="form ">
 					<?php if ($this->input->post('tanggal_awal')): ?>
@@ -174,6 +177,7 @@
 	</div>
 	<div class="col-12 col-xl-6">
 		<form action="" method="post" class="form-row align-items-center text-center">
+                      <?= csrf_field() ?>
 							<div class="col-10 col-sm-5 mb-2 mb-md-0">
 								<div class="form">
 									<select class="custom-select" id="bulan_post" name="bulan_post" disabled>

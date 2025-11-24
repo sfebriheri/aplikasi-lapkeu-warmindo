@@ -9,21 +9,24 @@
                       <h1 class="h4 text-primary font-weight-bold mb-4">Lupa Password ?</h1>
                     </div>
 
-                    <?= $this->session->flashdata('message'); ?>
+                    <?= session('message'); ?>
 
                     <form class="user" method="post" action="<?= base_url('auth/lupas') ?>">
-                     
+                      <?= csrf_field() ?>
+
                       <div class="form-group">
-                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" name="email" value="<?= set_value('email'); ?>">
-                        <?= form_error ('email','<small class="text-danger pl-3">','</small>'); ?>
+                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" name="email" value="<?= old('email'); ?>">
+                        <?php if(session('errors.email')): ?>
+                          <small class="text-danger pl-3"><?= session('errors.email'); ?></small>
+                        <?php endif; ?>
                       </div>
 
                       <button type="submit" class="btn btn-primary btn-user btn-block">Reset Password</button>
-                  
-                 
+
+
                     </form>
                     <hr>
-                  
+
                     <div class="text-center">
                       <a class="small" href="<?= base_url(); ?>">Kembali ke Login</a>
                     </div>

@@ -4,7 +4,7 @@
 [![PHP Version](https://img.shields.io/badge/PHP-%3E%3D7.4-blue)](https://www.php.net/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-%3E%3D12-336791)](https://www.postgresql.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.3.0-06B6D4)](https://tailwindcss.com/)
-[![CodeIgniter](https://img.shields.io/badge/CodeIgniter-3.1-EF4223)](https://codeigniter.com/)
+[![CodeIgniter](https://img.shields.io/badge/CodeIgniter-4.6.3-EF4223)](https://codeigniter.com/)
 
 **LAPKEU** (Laporan Keuangan - Financial Statement) is a professional, modern web-based accounting and financial statement management system designed for small to medium enterprises. Built with CodeIgniter, PostgreSQL, and Tailwind CSS, it provides a robust solution for managing financial transactions, generating accurate reports, and maintaining compliance with accounting standards.
 
@@ -160,7 +160,7 @@ createdb -U postgres lapkeu_warmindo
 
 ### 5. Run Migrations
 ```bash
-php index.php cli migrations latest
+php spark migrate
 ```
 
 ### 6. Build Frontend Assets
@@ -170,14 +170,19 @@ npm run build
 
 ### 7. Set Permissions
 ```bash
-chmod -R 755 application/
-chmod -R 755 assets/
-chmod -R 755 application/logs/
+chmod -R 755 app/
+chmod -R 755 public/
+chmod -R 755 writable/
 ```
 
-### 8. Access Application
+### 8. Start Development Server
+```bash
+php spark serve
 ```
-URL: http://localhost/aplikasi-lapkeu-warmindo/
+
+### 9. Access Application
+```
+URL: http://localhost:8080/
 Email: admin@lapkeu.local
 Password: Admin@123456
 ```
@@ -304,13 +309,13 @@ GRANT CREATE ON SCHEMA public TO lapkeu;
 #### Run Migrations
 ```bash
 # Run all pending migrations
-php index.php cli migrations latest
+php spark migrate
 
 # Rollback one migration
-php index.php cli migrations previous
+php spark migrate:rollback
 
 # Refresh all migrations
-php index.php cli migrations refresh
+php spark migrate:refresh
 ```
 
 ---
@@ -319,53 +324,61 @@ php index.php cli migrations refresh
 
 ```
 aplikasi-lapkeu-warmindo/
-├── application/
-│   ├── config/                             # CodeIgniter configuration
-│   │   ├── config.php                      # Main settings
-│   │   ├── database.php                    # Database configuration
+├── app/
+│   ├── Config/                             # CodeIgniter 4 configuration
+│   │   ├── Routes.php                      # Route definitions
+│   │   ├── Database.php                    # Database configuration
+│   │   ├── Filters.php                     # Filter configuration
 │   │   └── ...
-│   ├── controllers/                        # Request handlers
+│   ├── Controllers/                        # Request handlers
 │   │   ├── Auth.php                        # Authentication
 │   │   ├── Admin.php                       # Dashboard
-│   │   ├── Accounting.php                  # Accounting operations
+│   │   ├── Master.php                      # Master data
+│   │   ├── Jp.php                          # Journal entries
 │   │   └── ...
-│   ├── models/                             # Database interaction
-│   │   ├── User_model.php                  # User operations
-│   │   ├── Accounting_model.php
+│   ├── Models/                             # Database interaction
+│   │   ├── UserModel.php                   # User operations
+│   │   ├── AdminModel.php
+│   │   ├── AccountingModel.php
 │   │   └── ...
-│   ├── views/                              # HTML templates
+│   ├── Views/                              # HTML templates
 │   │   ├── auth/                           # Login/Register
 │   │   ├── admin/                          # Dashboard pages
-│   │   ├── accounting/                     # Accounting pages
-│   │   ├── reports/                        # Report templates
 │   │   ├── templates/                      # Layout templates
+│   │   ├── laporan/                        # Report templates
 │   │   └── ...
-│   ├── migrations/                         # Database migrations
-│   │   ├── 001_Create_user_table.php
-│   │   ├── 002_Create_user_role_table.php
-│   │   ├── 003_Create_user_token_table.php
-│   │   ├── 004_Create_accounting_core_tables.php
-│   ├── helpers/                            # Helper functions
-│   ├── libraries/                          # Custom libraries
+│   ├── Database/
+│   │   └── Migrations/                     # Database migrations
+│   │       ├── 001_CreateUserTable.php
+│   │       ├── 002_CreateUserRoleTable.php
+│   │       ├── 003_CreateAccountingTables.php
+│   │       └── ...
+│   ├── Filters/                            # Custom filters
+│   │   ├── AuthFilter.php                  # Authentication filter
+│   │   └── ...
+│   ├── Helpers/                            # Helper functions
+│   │   ├── TugasakhirHelper.php            # Currency formatting helpers
+│   │   └── ...
+│   ├── Libraries/                          # Custom libraries
+│   │   ├── CurrencyHandler.php             # Currency handling
+│   │   └── DompdfGen.php                   # PDF generation wrapper
+│   └── ...
+├── public/
+│   ├── index.php                           # CodeIgniter 4 entry point
+│   ├── assets/
+│   │   ├── css/
+│   │   │   ├── input.css                   # Tailwind entry point
+│   │   │   └── output.css                  # Compiled CSS (generated)
+│   │   ├── scss/                           # SCSS source files
+│   │   ├── js/                             # JavaScript files
+│   │   ├── img/                            # Images
+│   │   │   └── profile/                    # User profile pictures
+│   │   └── uploads/                        # User uploads
+│   └── .htaccess                           # Apache rewrite rules
+├── writable/                               # Application logs & cache
+│   ├── cache/                              # Cache files
 │   ├── logs/                               # Application logs
-│   └── cache/                              # Cache files
-├── assets/
-│   ├── css/
-│   │   ├── input.css                       # Tailwind entry point
-│   │   └── output.css                      # Compiled CSS (generated)
-│   ├── scss/                               # SCSS source files
-│   │   ├── variables.scss
-│   │   ├── mixins.scss
-│   │   ├── typography.scss
-│   │   ├── components.scss
-│   │   ├── utilities.scss
-│   │   └── responsive.scss
-│   ├── js/                                 # JavaScript files
-│   ├── img/                                # Images
-│   │   └── profile/                        # User profile pictures
-│   └── uploads/                            # User uploads
-├── public/                                 # Public files (if used)
-├── system/                                 # CodeIgniter core (read-only)
+│   └── uploads/                            # Uploaded files
 ├── .env                                    # Environment variables (gitignored)
 ├── .env.example                            # Environment template
 ├── .gitignore                              # Git ignore rules
@@ -376,8 +389,9 @@ aplikasi-lapkeu-warmindo/
 ├── composer.json                           # PHP dependencies
 ├── composer.lock                           # PHP dependency lock
 ├── INSTALLATION.md                         # Installation guide
+├── MIGRATION_TO_CI4.md                     # Migration guide from CI3
 ├── README.md                               # This file
-└── index.php                               # Application entry point
+└── spark                                   # CodeIgniter 4 CLI tool
 ```
 
 ---
@@ -436,8 +450,8 @@ Rate Limiting (Future)
 ### Backend
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| **PHP** | 7.4 - 8.1+ | Server-side language |
-| **CodeIgniter** | 3.1.x | MVC Framework |
+| **PHP** | 7.4 - 8.2+ | Server-side language |
+| **CodeIgniter** | 4.6.3 | MVC Framework |
 | **PostgreSQL** | 12+ | Primary database |
 | **MySQL/MariaDB** | 5.7+ | Legacy database support |
 | **Composer** | Latest | PHP dependency management |
@@ -1063,7 +1077,7 @@ createdb -U postgres lapkeu_warmindo_dev
 
 #### 4. Run Migrations
 ```bash
-php index.php cli migrations latest
+php spark migrate
 ```
 
 #### 5. Start Development Servers
@@ -1071,8 +1085,8 @@ php index.php cli migrations latest
 # Terminal 1: Watch CSS changes
 npm run dev
 
-# Terminal 2: Run PHP server
-php -S localhost:8000 index.php
+# Terminal 2: Run CodeIgniter development server
+php spark serve
 ```
 
 ### Code Style Guidelines

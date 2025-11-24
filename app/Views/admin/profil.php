@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-6">
-			<?= $this->session->flashdata('message'); ?>
+			<?= session('message'); ?>
 		</div>
 	</div>
 	<div class="row">

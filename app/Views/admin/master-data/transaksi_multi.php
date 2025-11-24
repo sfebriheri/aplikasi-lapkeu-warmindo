@@ -1,16 +1,16 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-<?php if ($this->session->flashdata('pesan_sukses')) : ?>
+<?php if (session('pesan_sukses')) : ?>
 			<div class="row">
 				<div class="col-8">
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
 				<div class="col-6">
-					  Data Transaksi<strong> Berhasil</strong> <?= $this->session->flashdata('pesan_sukses'); ?>
+					  Data Transaksi<strong> Berhasil</strong> <?= session('pesan_sukses'); ?>
 						 
 				</div>
 				<div class="col-6">							
 							
-						  Akun <strong> <?= $this->session->flashdata('pesan_balance'); ?></strong>
+						  Akun <strong> <?= session('pesan_balance'); ?></strong>
 							
 				</div>
 				 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -20,17 +20,17 @@
 				
 				</div>
 			</div>
-<?php elseif ($this->session->flashdata('pesan_error')) : ?>
+<?php elseif (session('pesan_error')) : ?>
 			<div class="row">
 				<div class="col-8">
 				<div class="alert alert-danger alert-dismissible fade show" role="alert">
 					<div class="col-6">
-						  Data Transaksi<strong> Gagal</strong> <?= $this->session->flashdata('pesan_error'); ?>
+						  Data Transaksi<strong> Gagal</strong> <?= session('pesan_error'); ?>
 							 
 					</div>
 					<div class="col-6">							
 								
-							  Akun <strong> <?= $this->session->flashdata('pesan_tidakbalance'); ?></strong>
+							  Akun <strong> <?= session('pesan_tidakbalance'); ?></strong>
 								
 					</div>
 					 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -54,19 +54,19 @@
 				    <div class="col-12 col-sm-12 col-md-4">
 				    		<label>Bukti Transaksi</label>
 				      <input type="text" class="form-control" id="bukti_copy" name="bukti_copy"  value="<?= $bukti_transaksi; ?>" onkeyup="auto_copy();" readonly>
-				      		<small class="form-text text-danger"><?= form_error('bukti_transaksi[]'); ?></small>
+				      		<small class="form-text text-danger"><?php if(session('errors.bukti_transaksi[]')): ?><?= session('errors.bukti_transaksi[]'); ?><?php endif; ?></small>
 				    </div>
 				    <div class="col-12 col-sm-12 col-md-4">
 				    		<label>Tanggal Transaksi</label>
 				      <input type="date" class="form-control" id="tanggal_copy" name="tanggal_copy" onkeyup="auto_copy(); ">
-				     		<small class="form-text text-danger"><?= form_error('tanggal_transaksi[]'); ?></small>
+				     		<small class="form-text text-danger"><?php if(session('errors.tanggal_transaksi[]')): ?><?= session('errors.tanggal_transaksi[]'); ?><?php endif; ?></small>
 
 				    </div>
 				     <div class="col-12 col-sm-12 col-md-4">
 				     		<label>Keterangan</label>
 				      <input type="text" class="form-control" id="keterangan_copy" 
-				     name="keterangan_copy" onkeyup="auto_copy();" value="<?= set_value('keterangan_copy'); ?>">
-				      		<small class="form-text text-danger"><?= form_error('keterangan[]'); ?></small>
+				     name="keterangan_copy" onkeyup="auto_copy();" value="<?= old('keterangan_copy'); ?>">
+				      		<small class="form-text text-danger"><?php if(session('errors.keterangan[]')): ?><?= session('errors.keterangan[]'); ?><?php endif; ?></small>
 				    </div>
 
 				</div>
@@ -113,18 +113,18 @@
 		          		<div class="form-group col">
 		          			<h5>Akun</h5>
 		          			<input type="text" class="form-control" name="akun[]" id="akun"  value="" readonly>
-		          			<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          			<!-- <h5>Bukti Transaksi HIDDEN</h3> -->
-		          			<input type="text" class="form-control" hidden name="bukti_transaksi[]" id="bukti_transaksi" value="<?= set_value('bukti_transaksi'); ?>" >
+		          			<input type="text" class="form-control" hidden name="bukti_transaksi[]" id="bukti_transaksi" value="<?= old('bukti_transaksi'); ?>" >
 		          			
 		          		
 		          	</div>
 		          	
 		          		
 		          			<!-- Keterangan HIDDEN -->
-		          			<input type="text" class="form-control" name="keterangan[]" id="keterangan" value="<?= set_value('keterangan'); ?>" hidden >
+		          			<input type="text" class="form-control" name="keterangan[]" id="keterangan" value="<?= old('keterangan'); ?>" hidden >
 		        	          		
 		          		
 		          			 <!-- <input type="text" class="form-control" hidden name="pos_saldo[]" id="pos_saldo" value="2" > -->
@@ -154,14 +154,14 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input  type="text" class="form-control" name="debit[]" id="debit" value="<?= set_value('debit[]'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
+		          			<input  type="text" class="form-control" name="debit[]" id="debit" value="<?= old('debit[]'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.debit[]')): ?><?= session('errors.debit[]'); ?><?php endif; ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
 		          			<input  type="text" class="form-control" name="kredit[]" id="kredit" value="">
-		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.kredit[]')): ?><?= session('errors.kredit[]'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          	</div>
@@ -203,19 +203,19 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Akun</h5>
-		          			<input type="text" class="form-control" name="akun[]" id="akun1"  value="<?= set_value('akun[]'); ?>" readonly>
-		          			<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+		          			<input type="text" class="form-control" name="akun[]" id="akun1"  value="<?= old('akun[]'); ?>" readonly>
+		          			<small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          			<!-- <h5>Bukti Transaksi HIDDEN</h3> -->
-		          			<input type="text" class="form-control" hidden name="bukti_transaksi[]" id="bukti_transaksi1" value="<?= set_value('bukti_transaksi'); ?>" >
+		          			<input type="text" class="form-control" hidden name="bukti_transaksi[]" id="bukti_transaksi1" value="<?= old('bukti_transaksi'); ?>" >
 		          			
 		          		
 		          	</div>
 		          	
 		          		
 		          			<!-- Keterangan HIDDEN -->
-		          			<input type="text" class="form-control" name="keterangan[]" id="keterangan1" value="<?= set_value('keterangan'); ?>" hidden >
+		          			<input type="text" class="form-control" name="keterangan[]" id="keterangan1" value="<?= old('keterangan'); ?>" hidden >
 		        	          		
 		          		
 		          			 <!-- <input type="text" class="form-control" hidden name="pos_saldo[]" id="pos_saldo" value="2" > -->
@@ -245,14 +245,14 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input  type="text" class="form-control" name="debit[]" id="debit1" value="<?= set_value('debit'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
+		          			<input  type="text" class="form-control" name="debit[]" id="debit1" value="<?= old('debit'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.debit[]')): ?><?= session('errors.debit[]'); ?><?php endif; ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
 		          			<input  type="text" class="form-control" name="kredit[]" id="kredit1" value="">
-		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.kredit[]')): ?><?= session('errors.kredit[]'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          	</div>
@@ -298,16 +298,16 @@
 		          		<div class="form-group col">
 		          			<h5>Akun</h5>
 		          			<input type="text" class="form-control" name="akun[]" id="akun2"  value="" readonly disabled>
-		          			<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          			<!-- <h5>Bukti Transaksi HIDDEN</h3> -->
-		          			<input type="text" class="form-control bukti_transaksi3" hidden name="bukti_transaksi[]" id="bukti_transaksi2" value="<?= set_value('bukti_transaksi'); ?>" disabled>
+		          			<input type="text" class="form-control bukti_transaksi3" hidden name="bukti_transaksi[]" id="bukti_transaksi2" value="<?= old('bukti_transaksi'); ?>" disabled>
 		          				
 		          	</div>
 		          	
 		          			<!-- Keterangan HIDDEN -->
-		          			<input type="text" class="form-control keterangan3" name="keterangan[]" id="keterangan2" value="<?= set_value('keterangan'); ?>" hidden disabled >
+		          			<input type="text" class="form-control keterangan3" name="keterangan[]" id="keterangan2" value="<?= old('keterangan'); ?>" hidden disabled >
 		        	          		
 		          		
 		          			 <!-- <input type="text" class="form-control" hidden name="pos_saldo[]" id="pos_saldo" value="2" > -->
@@ -337,14 +337,14 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input disabled type="text" class="form-control" name="debit[]" id="debit2" value="<?= set_value('debit'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
+		          			<input disabled type="text" class="form-control" name="debit[]" id="debit2" value="<?= old('debit'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.debit[]')): ?><?= session('errors.debit[]'); ?><?php endif; ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
 		          			<input disabled type="text" class="form-control" name="kredit[]" id="kredit2" value="">
-		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.kredit[]')): ?><?= session('errors.kredit[]'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          	</div>
@@ -388,18 +388,18 @@
 		          		<div class="form-group col">
 		          			<h5>Akun</h5>
 		          			<input type="text" class="form-control" name="akun[]" id="akun3"  value="" readonly disabled>
-		          			<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          			<!-- <h5>Bukti Transaksi HIDDEN</h3> -->
-		          			<input type="text" class="form-control bukti_transaksi4" hidden disabled name="bukti_transaksi[]" id="bukti_transaksi3" value="<?= set_value('bukti_transaksi'); ?>" >
+		          			<input type="text" class="form-control bukti_transaksi4" hidden disabled name="bukti_transaksi[]" id="bukti_transaksi3" value="<?= old('bukti_transaksi'); ?>" >
 		          			
 		          		
 		          	</div>
 		          	
 		          		
 		          			<!-- Keterangan HIDDEN -->
-		          			<input type="text" class="form-control keterangan4" name="keterangan[]" id="keterangan3" value="<?= set_value('keterangan'); ?>" hidden disabled>
+		          			<input type="text" class="form-control keterangan4" name="keterangan[]" id="keterangan3" value="<?= old('keterangan'); ?>" hidden disabled>
 		        	          		
 		          		
 		          			 <!-- <input type="text" class="form-control" hidden name="pos_saldo[]" id="pos_saldo" value="2" > -->
@@ -429,14 +429,14 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input disabled  type="text" class="form-control" name="debit[]" id="debit3" value="<?= set_value('debit'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
+		          			<input disabled  type="text" class="form-control" name="debit[]" id="debit3" value="<?= old('debit'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.debit[]')): ?><?= session('errors.debit[]'); ?><?php endif; ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
 		          			<input disabled type="text" class="form-control" name="kredit[]" id="kredit3" value="">
-		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.kredit[]')): ?><?= session('errors.kredit[]'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          	</div>

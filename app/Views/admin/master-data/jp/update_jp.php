@@ -9,6 +9,7 @@
 	<!-- awal form transaksi -->
 
 <form action="" method="post" name="formtransaksi">
+                      <?= csrf_field() ?>
 
 	<div class="row">
 
@@ -19,7 +20,7 @@
 				    <div class="col-12 col-sm-12 col-md-3">
 				    		<label>Bukti Transaksi</label>
 				      <input value="<?= $data_jp['bukti_transaksi'][0]; ?>" type="text" class="form-control" id="bukti_copy" name="bukti_copy" readonly>
-				      		<small class="form-text text-danger"><?= form_error('bukti_transaksi[]'); ?></small>
+				      		<small class="form-text text-danger"><?php if(session('errors.bukti_transaksi[]')): ?><?= session('errors.bukti_transaksi[]'); ?><?php endif; ?></small>
 				    </div>
 				    <div class="col-12 col-sm-12 col-md-3">
 				    		<label>Bulan</label>
@@ -64,7 +65,7 @@
 				     		<label>Keterangan</label>
 				      <input value="<?= $data_jp['keterangan'][0]; ?>" type="text" class="form-control" id="keterangan_copy" 
 				     name="keterangan_copy">
-				      		<small class="form-text text-danger"><?= form_error('keterangan[]'); ?></small>
+				      		<small class="form-text text-danger"><?php if(session('errors.keterangan[]')): ?><?= session('errors.keterangan[]'); ?><?php endif; ?></small>
 				    </div>
 				</div>
 			  </div>
@@ -112,16 +113,16 @@
 		          		<div class="form-group col">
 		          			<h5>Akun</h5>
 		          			<input type="text" class="form-control" name="akun[]" id="akun"  value="<?= $data_jp['akun'][0]; ?>" readonly >
-		          			<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          			<!-- <h5>Bukti Transaksi HIDDEN</h3> -->
-		          			<input type="text" class="form-control" name="bukti_transaksi[]" id="bukti_transaksi" value="<?= $data_jp['bukti_transaksi'][0];set_value('bukti_transaksi'); ?>" hidden >
+		          			<input type="text" class="form-control" name="bukti_transaksi[]" id="bukti_transaksi" value="<?= $data_jp['bukti_transaksi'][0];old('bukti_transaksi'); ?>" hidden >
 		          				
 		          	</div>
 		          	          		
 		          			<!-- Keterangan HIDDEN -->
-		          			<input type="text" class="form-control" name="keterangan[]" id="keterangan" value="<?= $data_jp['keterangan'][0];set_value('keterangan'); ?>" hidden>
+		          			<input type="text" class="form-control" name="keterangan[]" id="keterangan" value="<?= $data_jp['keterangan'][0];old('keterangan'); ?>" hidden>
 		        	          		
 		          			 <!-- <input type="text" class="form-control" hidden name="pos_saldo[]" id="pos_saldo" value="2" > -->
 
@@ -154,14 +155,14 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input  type="text" class="form-control" name="debit[]" id="debit" value="<?= $data_jp['debit'][0];set_value('debit'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
+		          			<input  type="text" class="form-control" name="debit[]" id="debit" value="<?= $data_jp['debit'][0];old('debit'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.debit[]')): ?><?= session('errors.debit[]'); ?><?php endif; ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
 		          			<input  type="text" class="form-control" name="kredit[]" id="kredit" value="<?= $data_jp['kredit'][0]; ?>">
-		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.kredit[]')): ?><?= session('errors.kredit[]'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          	</div>
@@ -204,7 +205,7 @@
 		          			<input type="text" class="form-control tanggal_transaksi4" name="id[]" id="id2" value="<?=  $data_jp['id'][1];?>" hidden>
 		          		
 		          			<!-- <h5>Tanggal HIDDEN</h3> -->
-		          			<input type="text" class="form-control" name="tanggal_transaksi[]" id="tanggal_transaksi1" value="<?= $data_jp['tanggal_transaksi'][1];set_value('tanggal_transaksi'); ?>" hidden >
+		          			<input type="text" class="form-control" name="tanggal_transaksi[]" id="tanggal_transaksi1" value="<?= $data_jp['tanggal_transaksi'][1];old('tanggal_transaksi'); ?>" hidden >
 		          			
 		          			
 		          	</div>
@@ -212,18 +213,18 @@
 		          		<div class="form-group col">
 		          			<h5>Akun</h5>
 		          			<input type="text" class="form-control" name="akun[]" id="akun1"  value="<?= $data_jp['akun'][1]; ?>" readonly >
-		          			<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          			<!-- <h5>Bukti Transaksi HIDDEN</h3> -->
-		          			<input type="text" class="form-control" hidden name="bukti_transaksi[]" id="bukti_transaksi1" value="<?= $data_jp['bukti_transaksi'][1];set_value('bukti_transaksi'); ?>" hidden >
+		          			<input type="text" class="form-control" hidden name="bukti_transaksi[]" id="bukti_transaksi1" value="<?= $data_jp['bukti_transaksi'][1];old('bukti_transaksi'); ?>" hidden >
 		          			
 		          		
 		          	</div>
 		          	
 		          		
 		          			<!-- Keterangan HIDDEN -->
-		          			<input type="text" class="form-control" name="keterangan[]" id="keterangan1" value="<?= $data_jp['keterangan'][1];set_value('keterangan'); ?>" hidden >
+		          			<input type="text" class="form-control" name="keterangan[]" id="keterangan1" value="<?= $data_jp['keterangan'][1];old('keterangan'); ?>" hidden >
 		        	          		
 		          		
 		          			 <!-- <input type="text" class="form-control" hidden name="pos_saldo[]" id="pos_saldo" value="2" > -->
@@ -257,14 +258,14 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input  type="text" class="form-control" name="debit[]" id="debit1" value="<?= $data_jp['debit'][1];set_value('debit'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
+		          			<input  type="text" class="form-control" name="debit[]" id="debit1" value="<?= $data_jp['debit'][1];old('debit'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.debit[]')): ?><?= session('errors.debit[]'); ?><?php endif; ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
 		          			<input  type="text" class="form-control" name="kredit[]" id="kredit1" value="<?= $data_jp['kredit'][1]; ?>">
-		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.kredit[]')): ?><?= session('errors.kredit[]'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          	</div>
@@ -330,7 +331,7 @@
 		          			<input type="text" class="form-control tanggal_transaksi4" name="id[]" id="id3" value="<?=  $data_jp['id'][2];?>" hidden >
 		          		
 		          			<!-- <h5>Tanggal HIDDEN</h3> -->
-		          			<input type="text" class="form-control tanggal_transaksi3" name="tanggal_transaksi[]" id="tanggal_transaksi2" value="<?= $data_jp['tanggal_transaksi'][2];set_value('tanggal_transaksi'); ?>" hidden >
+		          			<input type="text" class="form-control tanggal_transaksi3" name="tanggal_transaksi[]" id="tanggal_transaksi2" value="<?= $data_jp['tanggal_transaksi'][2];old('tanggal_transaksi'); ?>" hidden >
 		          			
 		          			
 		          	</div>
@@ -338,18 +339,18 @@
 		          		<div class="form-group col">
 		          			<h5>Akun</h5>
 		          			<input type="text" class="form-control" name="akun[]" id="akun2"  value="<?=$data_jp['akun'][2]; ?>" readonly >
-		          			<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          			<!-- <h5>Bukti Transaksi HIDDEN</h3> -->
-		          			<input type="text" class="form-control bukti_transaksi3" hidden name="bukti_transaksi[]" id="bukti_transaksi2" value="<?= $data_jp['bukti_transaksi'][2];set_value('bukti_transaksi'); ?>" >
+		          			<input type="text" class="form-control bukti_transaksi3" hidden name="bukti_transaksi[]" id="bukti_transaksi2" value="<?= $data_jp['bukti_transaksi'][2];old('bukti_transaksi'); ?>" >
 		          			
 		          		
 		          	</div>
 		          	
 		          		
 		          			<!-- Keterangan HIDDEN -->
-		          			<input type="text" class="form-control keterangan3" name="keterangan[]" id="keterangan2" value="<?= $data_jp['keterangan'][2];set_value('keterangan'); ?>" hidden  >
+		          			<input type="text" class="form-control keterangan3" name="keterangan[]" id="keterangan2" value="<?= $data_jp['keterangan'][2];old('keterangan'); ?>" hidden  >
 		        	          		
 		          		
 		          			 <!-- <input type="text" class="form-control" hidden name="pos_saldo[]" id="pos_saldo" value="2" > -->
@@ -383,14 +384,14 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input  type="text" class="form-control" name="debit[]" id="debit2" value="<?= $data_jp['debit'][2];set_value('debit'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
+		          			<input  type="text" class="form-control" name="debit[]" id="debit2" value="<?= $data_jp['debit'][2];old('debit'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.debit[]')): ?><?= session('errors.debit[]'); ?><?php endif; ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
 		          			<input  type="text" class="form-control" name="kredit[]" id="kredit2" value="<?= $data_jp['kredit'][2]; ?>">
-		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.kredit[]')): ?><?= session('errors.kredit[]'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          	</div>
@@ -458,7 +459,7 @@
 		          			<input type="text" class="form-control tanggal_transaksi4" name="id[]" id="id4" value="<?=  $data_jp['id'][3];?>"  hidden>
 
 		          			<!-- <h5>Tanggal HIDDEN</h3> -->
-		          			<input type="text" class="form-control tanggal_transaksi4" name="tanggal_transaksi[]" id="tanggal_transaksi3" value="<?=  $data_jp['tanggal_transaksi'][3];set_value('tanggal_transaksi'); ?>" hidden >
+		          			<input type="text" class="form-control tanggal_transaksi4" name="tanggal_transaksi[]" id="tanggal_transaksi3" value="<?=  $data_jp['tanggal_transaksi'][3];old('tanggal_transaksi'); ?>" hidden >
 		          			
 		          			
 		          	</div>
@@ -466,18 +467,18 @@
 		          		<div class="form-group col">
 		          			<h5>Akun</h5>
 		          			<input type="text" class="form-control" name="akun[]" id="akun3"  value=" <?= $data_jp['akun'][3]; ?>" readonly >
-		          			<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          			<!-- <h5>Bukti Transaksi HIDDEN</h3> -->
-		          			<input type="text" class="form-control bukti_transaksi4" hidden  name="bukti_transaksi[]" id="bukti_transaksi3" value="<?=  $data_jp['bukti_transaksi'][3];set_value('bukti_transaksi'); ?>" >
+		          			<input type="text" class="form-control bukti_transaksi4" hidden  name="bukti_transaksi[]" id="bukti_transaksi3" value="<?=  $data_jp['bukti_transaksi'][3];old('bukti_transaksi'); ?>" >
 		          			
 		          		
 		          	</div>
 		          	
 		          		
 		          			<!-- Keterangan HIDDEN -->
-		          			<input type="text" class="form-control keterangan4" name="keterangan[]" id="keterangan3" value="<?= $data_jp['keterangan'][3];set_value('keterangan'); ?>" hidden >
+		          			<input type="text" class="form-control keterangan4" name="keterangan[]" id="keterangan3" value="<?= $data_jp['keterangan'][3];old('keterangan'); ?>" hidden >
 		        	          		
 		          		
 		          			 <!-- <input type="text" class="form-control" hidden name="pos_saldo[]" id="pos_saldo" value="2" > -->
@@ -511,14 +512,14 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input   type="text" class="form-control" name="debit[]" id="debit3" value="<?=  $data_jp['debit'][3];set_value('debit'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
+		          			<input   type="text" class="form-control" name="debit[]" id="debit3" value="<?=  $data_jp['debit'][3];old('debit'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.debit[]')): ?><?= session('errors.debit[]'); ?><?php endif; ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
 		          			<input  type="text" class="form-control" name="kredit[]" id="kredit3" value="<?= $data_jp['kredit'][3]; ?>">
-		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.kredit[]')): ?><?= session('errors.kredit[]'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          	</div>
