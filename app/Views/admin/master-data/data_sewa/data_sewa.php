@@ -32,7 +32,8 @@
 							<?php endif ?>
 							
 							<div class="col-6 col-sm-6 col-md-3 col-xl-1 mb-2 mb-md-2 mb-xl-0">
-								<form method="post" action="<?= base_url();?>data_sewa/cetak_ds">
+								<form method="post" action="<?= base_url();?>
+                      <?= csrf_field() ?>data_sewa/cetak_ds">
 									<?php if ($this->input->post('tanggal_awal')): ?>
 								  <input type="text" name="tanggal_awal" value="<?= $this->input->post('tanggal_awal') ?>" hidden >
 								  <input type="text" name="tanggal_akhir" value="<?= $this->input->post('tanggal_akhir') ?>" hidden>
@@ -59,6 +60,7 @@
 							<?php endif; ?>
 							
 								<form action="" method="post">
+                      <?= csrf_field() ?>
 									<div class="input-group">
 									 
 									   <select type="text" name="katakunci" class="custom-select"> 
@@ -85,6 +87,7 @@
 		    			<div class="row mb-2">
 			    			<div class="col-12 col-xl-6">
 			    				<form method="post" class="form-row align-items-center">
+                      <?= csrf_field() ?>
 									<div class="col-12 col-sm-12 mb-2 mb-sm-2 col-md-5">
 											<div class="form">
 											    <input type="date" class="form-control" name="tanggal_awal" value="<?= $this->input->post('tanggal_awal') ?>">
@@ -107,6 +110,7 @@
 						
 							<div class="col-12 col-xl-6">
 								<form action="" method="post" class="form-row align-items-center">
+                      <?= csrf_field() ?>
 										<div class="col-10 col-sm-11 mb-2 mb-sm-2 mb-md-0 col-md-5">
 											<div class="form">
 												<select class="custom-select" id="bulan_post" name="bulan_post" disabled>

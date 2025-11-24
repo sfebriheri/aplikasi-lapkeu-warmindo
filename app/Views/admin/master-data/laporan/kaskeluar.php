@@ -1,10 +1,10 @@
 <div class="container-fluid">
 <div class="row">
-	<?php if ($this->session->flashdata('flash')) : ?>
+	<?php if (session('flash')) : ?>
 			
 				<div class="col-6">
 					<div class="alert alert-success alert-dismissible fade show" role="alert">
-						  Data Transaksi<strong> Berhasil</strong> <?= $this->session->flashdata('flash'); ?>
+						  Data Transaksi<strong> Berhasil</strong> <?= session('flash'); ?>
 							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							    <span aria-hidden="true">&times;</span>
 							  </button>
@@ -54,7 +54,8 @@
           		<?php endif ?>
           		
           		<div class="col-6 col-sm-6 col-md-3 col-xl-1">
-          			<form method="post" action="<?= base_url();?>master/cetakkaskeluar">
+          			<form method="post" action="<?= base_url();?>
+                      <?= csrf_field() ?>master/cetakkaskeluar">
           					<!-- <input type="text" name="akun" id="akun" value="" hidden> -->
           					<?php if ($this->input->post('tanggal_awal') && $this->input->post('akun')) : ?>
           						<input type="text" name="tanggal_awal" value="<?= $t_aw; ?>" hidden>
@@ -103,6 +104,7 @@
 
 		        	<div class="col mb-2 mb-xl-0">			
 		    			<form action="" method="post" class="form-row align-items-center text-center">
+                      <?= csrf_field() ?>
 							<div class="col-10 col-sm-11 mb-2 mb-sm-2 mb-md-0 col-md-5">
 								<div class="form">
 									<select class="custom-select" id="bulan_post" name="bulan_post" disabled>
@@ -161,6 +163,7 @@
 					<div class="col-12 col-xl-6">
 							
 		    			<form action="" method="post" class="form-row align-items-center text-center ">
+                      <?= csrf_field() ?>
 							<div class="col-12 col-sm-12 col-md-5 mb-2 mb-sm-2 mb-md-0">
 								<div class="form ">
 									<?php if ($this->input->post('tanggal_awal')): ?>
@@ -200,7 +203,9 @@
       	</div>
      	<div class="row">
       		<div class="col offset-3">
-      			<?= form_error ('tahun_post','<small class="text-danger pl-3">','</small>'); ?> 
+      			<?php if(session('errors.tahun_post')): ?>
+                         <small class="text-danger pl-3"><?= session('errors.tahun_post'); ?></small>
+                       <?php endif; ?> 
       		</div>
       	</div>					  			 
 		

@@ -1,6 +1,16 @@
-<?php 
-  
- 
+<?php
+/**
+ * WARNING: This view contains direct database queries (lines 9-35)
+ * ACTION REQUIRED: Move all database queries to the controller
+ *
+ * In CI4, views should only display data, not fetch it.
+ * All $this->db queries should be moved to the controller method
+ * and passed to this view via the $data array.
+ *
+ * Example controller update needed:
+ * $data['total_debit'] = $transactionModel->getTotalDebit($tgl_now);
+ * return view('admin/index', $data);
+ */
 
   $tahun = date('Y');
   $bulan = date('m');

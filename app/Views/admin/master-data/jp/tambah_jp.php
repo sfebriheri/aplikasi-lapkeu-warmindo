@@ -1,16 +1,16 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-<?php if ($this->session->flashdata('pesan_sukses')) : ?>
+<?php if (session('pesan_sukses')) : ?>
 			<div class="row">
 				<div class="col-8">
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
 					<div class="col-6">
-						  Data Transaksi<strong> Berhasil</strong> <?= $this->session->flashdata('pesan_sukses'); ?>
+						  Data Transaksi<strong> Berhasil</strong> <?= session('pesan_sukses'); ?>
 							 
 					</div>
 					<div class="col-6">							
 								
-							  Akun <strong> <?= $this->session->flashdata('pesan_balance'); ?></strong>
+							  Akun <strong> <?= session('pesan_balance'); ?></strong>
 								
 					</div>
 					 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -20,17 +20,17 @@
 				
 				</div>
 			</div>
-<?php elseif ($this->session->flashdata('pesan_error')) : ?>
+<?php elseif (session('pesan_error')) : ?>
 			<div class="row">
 				<div class="col-8">
 				<div class="alert alert-danger alert-dismissible fade show" role="alert">
 					<div class="col-6">
-						  Data Transaksi<strong> Gagal</strong> <?= $this->session->flashdata('pesan_error'); ?>
+						  Data Transaksi<strong> Gagal</strong> <?= session('pesan_error'); ?>
 							 
 					</div>
 					<div class="col-6">							
 								
-							  Akun <strong> <?= $this->session->flashdata('pesan_tidakbalance'); ?></strong>
+							  Akun <strong> <?= session('pesan_tidakbalance'); ?></strong>
 								
 					</div>
 					 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -57,7 +57,7 @@
 				    <div class="col-12 col-sm-12 col-md-3">
 				    		<label>Bukti Transaksi</label>
 				      <input type="text" class="form-control" id="bukti_copy" name="bukti_copy"  value="<?= $bukti_transaksi; ?>"  readonly>
-				      		<small class="form-text text-danger"><?= form_error('bukti_transaksi[]'); ?></small>
+				      		<small class="form-text text-danger"><?php if(session('errors.bukti_transaksi[]')): ?><?= session('errors.bukti_transaksi[]'); ?><?php endif; ?></small>
 				    </div>
 				    <div class="col-12 col-sm-12 col-md-3">
 				    		<label>Bulan</label>
@@ -94,7 +94,7 @@
 				     		<label>Keterangan</label>
 				      <input type="text" class="form-control" id="keterangan_copy" 
 				     name="keterangan_copy" value="">
-				      		<small class="form-text text-danger"><?= form_error('keterangan[]'); ?></small>
+				      		<small class="form-text text-danger"><?php if(session('errors.keterangan[]')): ?><?= session('errors.keterangan[]'); ?><?php endif; ?></small>
 				    </div>
 
 				</div>
@@ -138,7 +138,7 @@
 		          		<div class="form-group col">
 		          			<h5>Akun</h5>
 		          			<input type="text" class="form-control" name="akun[]" id="akun"  value="" readonly>
-		          			<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          		
@@ -173,14 +173,14 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input  type="text" class="form-control" name="debit[]" id="debit" value="<?= set_value('debit[]'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
+		          			<input  type="text" class="form-control" name="debit[]" id="debit" value="<?= old('debit[]'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.debit[]')): ?><?= session('errors.debit[]'); ?><?php endif; ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
 		          			<input  type="text" class="form-control" name="kredit[]" id="kredit" value="">
-		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.kredit[]')): ?><?= session('errors.kredit[]'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          	</div>
@@ -220,8 +220,8 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Akun</h5>
-		          			<input type="text" class="form-control" name="akun[]" id="akun1"  value="<?= set_value('akun[]'); ?>" readonly>
-		          			<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+		          			<input type="text" class="form-control" name="akun[]" id="akun1"  value="<?= old('akun[]'); ?>" readonly>
+		          			<small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          	
@@ -259,14 +259,14 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input  type="text" class="form-control" name="debit[]" id="debit1" value="<?= set_value('debit'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
+		          			<input  type="text" class="form-control" name="debit[]" id="debit1" value="<?= old('debit'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.debit[]')): ?><?= session('errors.debit[]'); ?><?php endif; ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
 		          			<input  type="text" class="form-control" name="kredit[]" id="kredit1" value="">
-		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.kredit[]')): ?><?= session('errors.kredit[]'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          	</div>
@@ -309,7 +309,7 @@
 		          		<div class="form-group col">
 		          			<h5>Akun</h5>
 		          			<input type="text" class="form-control" name="akun[]" id="akun2"  value="" readonly disabled>
-		          			<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          		
@@ -348,14 +348,14 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input disabled type="text" class="form-control" name="debit[]" id="debit2" value="<?= set_value('debit'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
+		          			<input disabled type="text" class="form-control" name="debit[]" id="debit2" value="<?= old('debit'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.debit[]')): ?><?= session('errors.debit[]'); ?><?php endif; ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
 		          			<input disabled type="text" class="form-control" name="kredit[]" id="kredit2" value="">
-		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.kredit[]')): ?><?= session('errors.kredit[]'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          	</div>
@@ -396,7 +396,7 @@
 		          		<div class="form-group col">
 		          			<h5>Akun</h5>
 		          			<input type="text" class="form-control" name="akun[]" id="akun3"  value="" readonly disabled>
-		          			<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          		
@@ -434,14 +434,14 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input disabled  type="text" class="form-control" name="debit[]" id="debit3" value="<?= set_value('debit'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
+		          			<input disabled  type="text" class="form-control" name="debit[]" id="debit3" value="<?= old('debit'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.debit[]')): ?><?= session('errors.debit[]'); ?><?php endif; ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
 		          			<input disabled type="text" class="form-control" name="kredit[]" id="kredit3" value="">
-		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.kredit[]')): ?><?= session('errors.kredit[]'); ?><?php endif; ?></small>
 		          		</div>
 		          		
 		          	</div>

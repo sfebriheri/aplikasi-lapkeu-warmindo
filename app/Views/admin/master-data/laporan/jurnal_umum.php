@@ -1,16 +1,16 @@
 <div class="container-fluid">
 
-<?php if ($this->session->flashdata('pesan_sukses')) : ?>
+<?php if (session('pesan_sukses')) : ?>
 			<div class="row">
 				<div class="col-8">
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
 					<div class="col-6">
-						  Data Transaksi<strong> Berhasil</strong> <?= $this->session->flashdata('pesan_sukses'); ?>
+						  Data Transaksi<strong> Berhasil</strong> <?= session('pesan_sukses'); ?>
 							 
 					</div>
 					<div class="col-6">							
 								
-							  Akun <strong> <?= $this->session->flashdata('pesan_balance'); ?></strong>
+							  Akun <strong> <?= session('pesan_balance'); ?></strong>
 								
 					</div>
 					 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -20,17 +20,17 @@
 				
 				</div>
 			</div>
-<?php elseif ($this->session->flashdata('pesan_error')) : ?>
+<?php elseif (session('pesan_error')) : ?>
 			<div class="row">
 				<div class="col-8">
 				<div class="alert alert-danger alert-dismissible fade show" role="alert">
 					<div class="col-6">
-						  Data Transaksi<strong> Gagal</strong> <?= $this->session->flashdata('pesan_error'); ?>
+						  Data Transaksi<strong> Gagal</strong> <?= session('pesan_error'); ?>
 							 
 					</div>
 					<div class="col-6">							
 								
-							  Akun <strong> <?= $this->session->flashdata('pesan_tidakbalance'); ?></strong>
+							  Akun <strong> <?= session('pesan_tidakbalance'); ?></strong>
 								
 					</div>
 					 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -85,7 +85,8 @@
 			<div class="col-12 col-sm-6 mb-2 mb-xl-0">
 		<?php endif ?>
 		
-			<form method="post" action="<?= base_url();?>admin/pdf">
+			<form method="post" action="<?= base_url();?>
+                      <?= csrf_field() ?>admin/pdf">
 					  <?php if ($this->input->post('tanggal_awal')): ?>
 				  <input type="text" name="tanggal_awal" value="<?= $this->input->post('tanggal_awal') ?>" hidden >
 				  <input type="text" name="tanggal_akhir" value="<?= $this->input->post('tanggal_akhir') ?>" hidden>
@@ -104,6 +105,7 @@
 			
 		<div class="col-12 col-sm-8 col-md-8 mb-2 mb-xl-0 col-xl-5">
 			<form action="" method="post">
+                      <?= csrf_field() ?>
 				<div class="input-group">
 				   <input type="text" class="form-control" placeholder="Cari data jurnal" name="katakunci" value="<?php ?>">
 				  
@@ -120,6 +122,7 @@
 	<div class="row">
 		<div class="col-12 col-xl-6">
 			<form method="post" class="form-row align-items-center">
+                      <?= csrf_field() ?>
 				<div class="col-12 col-sm-5 mb-2 mb-xl-0">
 						<div class="form">
 						    <input type="date" class="form-control" name="tanggal_awal" value="<?= $this->input->post('tanggal_awal') ?>">
@@ -143,6 +146,7 @@
 		</div>
 		<div class="col-12 col-xl-6">
 			<form action="" method="post" class="form-row align-items-center">
+                      <?= csrf_field() ?>
 						<div class="col-10 col-sm-5 mb-2 mb-xl-0">
 							<div class="form">
 								<select class="custom-select" id="bulan_post" name="bulan_post" disabled>

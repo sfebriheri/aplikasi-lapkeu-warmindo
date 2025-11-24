@@ -47,13 +47,13 @@
 		          		<div class="form-group col-12 col-md-5">
 		          			<h5>Akun</h3>
 		          			<input type="text" class="form-control" name="akun" id="akun"  value="" readonly>
-		          			<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
 		          		
 		          		</div>
 		          		<div class="form-group col-12 col-md-5">
 		          			<h5>Pos Akun</h3>
 		          			<input type="text" class="form-control" name="pos_akun" id="pos_akun"  value="" readonly>
-		          			<small class="form-text text-danger"><?= form_error('pos_akun'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.pos_akun')): ?><?= session('errors.pos_akun'); ?><?php endif; ?></small>
 		          		
 		          		</div>
 		          		
@@ -69,8 +69,8 @@
 		          		</div>
 		          		<div class="form-group col-12 col-md-5">
 		          			<h5>Keterangan</h3>
-		          			<input type="text" class="form-control" name="keterangan" id="keterangan" value="<?= set_value('keterangan'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('keterangan'); ?></small>
+		          			<input type="text" class="form-control" name="keterangan" id="keterangan" value="<?= old('keterangan'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.keterangan')): ?><?= session('errors.keterangan'); ?><?php endif; ?></small>
 		          			
 		          		</div>
 		          		
@@ -78,15 +78,15 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col-sm-6 col-md-2">
 		          			<h5>Debit</h3>
-		          			<input type="text" class="form-control" name="debit" id="debit" value="<?= set_value('debit'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('debit'); ?></small>
+		          			<input type="text" class="form-control" name="debit" id="debit" value="<?= old('debit'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.debit')): ?><?= session('errors.debit'); ?><?php endif; ?></small>
 		       
 		          		</div>
 
 		          		<div class="form-group col-sm-6 col-md-2">
 		          			<h5>Kredit</h3>
-		          			<input type="text" class="form-control" name="kredit" id="kredit" value="<?= set_value('kredit'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('kredit'); ?></small>
+		          			<input type="text" class="form-control" name="kredit" id="kredit" value="<?= old('kredit'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.kredit')): ?><?= session('errors.kredit'); ?><?php endif; ?></small>
 		          			
 		          		</div>
 		          		<div class="form-group col-12 col-md-5">

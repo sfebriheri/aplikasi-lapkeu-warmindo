@@ -1,17 +1,17 @@
 <!-- Begin Page Content -->
 
 <div class="container-fluid">
-<?php if ($this->session->flashdata('pesan_sukses')) : ?>
+<?php if (session('pesan_sukses')) : ?>
 			<div class="row">
 				<div class="col-8">
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
 					<div class="col-6">
-						  Data Sewa<strong> Berhasil</strong> <?= $this->session->flashdata('pesan_sukses'); ?>
+						  Data Sewa<strong> Berhasil</strong> <?= session('pesan_sukses'); ?>
 							 
 					</div>
 					<div class="col-6">							
 								
-							  Akun <strong> <?= $this->session->flashdata('pesan_balance'); ?></strong>
+							  Akun <strong> <?= session('pesan_balance'); ?></strong>
 								
 					</div>
 					 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -21,17 +21,17 @@
 				
 				</div>
 			</div>
-<?php elseif ($this->session->flashdata('pesan_error')) : ?>
+<?php elseif (session('pesan_error')) : ?>
 			<div class="row">
 				<div class="col-8">
 				<div class="alert alert-danger alert-dismissible fade show" role="alert">
 					<div class="col-6">
-						  Data Transaksi<strong> Gagal</strong> <?= $this->session->flashdata('pesan_error'); ?>
+						  Data Transaksi<strong> Gagal</strong> <?= session('pesan_error'); ?>
 							 
 					</div>
 					<div class="col-6">							
 								
-							  Akun <strong> <?= $this->session->flashdata('pesan_tidakbalance'); ?></strong>
+							  Akun <strong> <?= session('pesan_tidakbalance'); ?></strong>
 								
 					</div>
 					 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -107,13 +107,13 @@
 		          		<div class="form-group col-12 col-md-6">
 		          			<h5>Bukti Transaksi</h5>
 		          			<input type="text" class="form-control" name="bukti_ds" id="bukti_ds" value="<?= $bukti_transaksi ?>" onkeyup="auto_copy()" readonly >
-		          			<small class="form-text text-danger"><?= form_error('bukti_transaksi'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.bukti_transaksi')): ?><?= session('errors.bukti_transaksi'); ?><?php endif; ?></small>
 		          		</div>
 			
 		          		<div class="form-group col-12 col-md-6">
 		          			<h5>Nama Penyewa</h5>
 		          			<input type="text" class="form-control" name="nama_penyewa" id="nama_penyewa" value="" onkeyup="auto_copy()" >
-		          			<small class="form-text text-danger"><?= form_error('nama_penyewa'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.nama_penyewa')): ?><?= session('errors.nama_penyewa'); ?><?php endif; ?></small>
 		          		</div>	
 		          		     		
 		          	</div>
@@ -134,13 +134,13 @@
 		          		<div class="form-group col-12 col-md-6">
 		          			<h5>Biaya Sewa</h5>
 		          			<input  type="text" class="form-control" name="biaya_sewa" id="biaya_sewa" value="" onkeyup="auto_copy()" >
-		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.debit[]')): ?><?= session('errors.debit[]'); ?><?php endif; ?></small>
 		          		</div>
 		        
 		          		<div class="form-group col-12 col-md-6">
 		          			<h5>Uang Muka</h5> 
 		          			<input  type="text" class="form-control" name="uang_muka" id="uang_muka" value="" onkeyup="auto_copy()" disabled>
-		          			<small class="form-text text-danger"><?= form_error('uang_muka'); ?></small>
+		          			<small class="form-text text-danger"><?php if(session('errors.uang_muka')): ?><?= session('errors.uang_muka'); ?><?php endif; ?></small>
 		          		</div>
 		 
 

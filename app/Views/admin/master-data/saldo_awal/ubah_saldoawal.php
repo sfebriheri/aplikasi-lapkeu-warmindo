@@ -5,6 +5,7 @@
           <h1 class="h3 mb-4 text-gray-800">Ubah Saldo Awal</h1>
           	<div class="card p-3">
           		<form action="" method="post" name="formtransaksi">
+                      <?= csrf_field() ?>
           			          			
 		          	<div class="form-row justify-content-around">
 
@@ -54,15 +55,15 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col-12 col-md-5">
 		          			<h5>Akun</h5>
-		          			<input type="text" class="form-control" name="akun" id="akun"  value="<?= $saldo_awal['akun'];set_value('akun'); ?>" readonly>
-		          			<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+		          			<input type="text" class="form-control" name="akun" id="akun"  value="<?= $saldo_awal['akun'];old('akun'); ?>" readonly>
+		          			<small class="form-text text-danger"><?php if(session('errors.akun')): ?><?= session('errors.akun'); ?><?php endif; ?></small>
 		          		
 		          		</div>
 
 		          		<div class="form-group col-12 col-md-5">
 		          			<h5>Pos Akun</h5>
-		          			<input type="text" class="form-control" name="pos_akun" id="pos_akun"  value="<?= $saldo_awal['pos_akun'];set_value('pos_akun'); ?>" readonly>
-		          			<small class="form-text text-danger"><?= form_error('pos_akun'); ?></small>
+		          			<input type="text" class="form-control" name="pos_akun" id="pos_akun"  value="<?= $saldo_awal['pos_akun'];old('pos_akun'); ?>" readonly>
+		          			<small class="form-text text-danger"><?php if(session('errors.pos_akun')): ?><?= session('errors.pos_akun'); ?><?php endif; ?></small>
 		          		
 		          		</div>
 		          		
@@ -85,8 +86,8 @@
 		          		</div>
 		          		<div class="form-group col-12 col-md-5">
 		          			<h5>Keterangan</h5>
-		          			<input type="text" class="form-control" name="keterangan" id="keterangan" value="<?= $saldo_awal['keterangan'];set_value('keterangan'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('keterangan'); ?></small>
+		          			<input type="text" class="form-control" name="keterangan" id="keterangan" value="<?= $saldo_awal['keterangan'];old('keterangan'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.keterangan')): ?><?= session('errors.keterangan'); ?><?php endif; ?></small>
 		          			
 		          		</div>
 		          		
@@ -94,15 +95,15 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col-12 col-md-2">
 		          			<h5>Debit</h5>
-		          			<input type="text" class="form-control" name="debit" id="debit" value="<?= $saldo_awal['debit'];set_value('debit'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('debit'); ?></small>
+		          			<input type="text" class="form-control" name="debit" id="debit" value="<?= $saldo_awal['debit'];old('debit'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.debit')): ?><?= session('errors.debit'); ?><?php endif; ?></small>
 		       
 		          		</div>
 
 		          		<div class="form-group col-12 col-md-2">
 		          			<h5>Kredit</h5>
-		          			<input type="text" class="form-control" name="kredit" id="kredit" value="<?=$saldo_awal['kredit']; set_value('kredit'); ?>">
-		          			<small class="form-text text-danger"><?= form_error('kredit'); ?></small>
+		          			<input type="text" class="form-control" name="kredit" id="kredit" value="<?=$saldo_awal['kredit']; old('kredit'); ?>">
+		          			<small class="form-text text-danger"><?php if(session('errors.kredit')): ?><?= session('errors.kredit'); ?><?php endif; ?></small>
 		          			
 		          		</div>
 		          		<div class="form-group col-12 col-md-5">

@@ -1,10 +1,10 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-<?php if ($this->session->flashdata('pesan_sukses')) : ?>
+<?php if (session('pesan_sukses')) : ?>
 			<div class="row">
 				<div class="col-6">
 					<div class="alert alert-success alert-dismissible fade show" role="alert">
-						  Data Transaksi<strong> Berhasil</strong> <?= $this->session->flashdata('pesan_sukses'); ?>
+						  Data Transaksi<strong> Berhasil</strong> <?= session('pesan_sukses'); ?>
 							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							    <span aria-hidden="true">&times;</span>
 							  </button>
@@ -28,6 +28,7 @@
 	          		<div class="row">
 	          			<div class="col mt-2">
 		          			<form action="" method="post">
+                      <?= csrf_field() ?>
 								<div class="input-group">
 									  <input type="text" class="form-control" placeholder="Cari data jurnal" name="katakunci">
 									  <div class="input-group-append">
