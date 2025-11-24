@@ -1,67 +1,184 @@
-# Environment variables
+# Environment Configuration
 .env
 .env.local
 .env.*.local
+.env.backup
 
-# CodeIgniter
-application/cache/*
-!application/cache/index.html
-application/logs/*
-!application/logs/index.html
-user_guide_src/build/*
-user_guide_src/cilexer/build/*
-user_guide_src/cilexer/dist/*
-user_guide_src/cilexer/pycilexer.egg-info/*
+# CodeIgniter 4 Specific
+writable/cache/*
+!writable/cache/.gitkeep
+writable/logs/*
+!writable/logs/.gitkeep
+writable/uploads/*
+!writable/uploads/.gitkeep
+writable/session/*
+!writable/session/.gitkeep
 
-# Composer
+# Legacy CI3 (to be removed)
+application/
+system_ci3_backup/
+user_guide_ci3_backup/
+
+# PHP Dependencies
 vendor/
 composer.lock
+composer.phar
 
-# IDE
+# Node.js / Frontend Dependencies
+node_modules/
+package-lock.json
+npm-debug.log*
+yarn-error.log*
+.npm
+
+# IDE / Editor
 .vscode/
+.vscode/**/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
 .idea/
+.idea/**/*
+*.sublime-project
+*.sublime-workspace
+.eclipse
+.project
+.settings/
+.classpath
 *.swp
 *.swo
 *~
 .DS_Store
-.project
-.settings/
-*.sublime-workspace
-
-# Node (if using npm)
-node_modules/
-package-lock.json
-npm-debug.log
-
-# OS
 Thumbs.db
+.AppleDouble
+.LSOverride
+
+# OS Files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
 
-# Uploaded files
-assets/img/profile/*
-!assets/img/profile/.gitkeep
-assets/uploads/*
-!assets/uploads/.gitkeep
-
-# Temporary files
+# Temporary Files
 *.tmp
 *.temp
 *.bak
+*.backup
+*.swp
+*.swo
+*~
+.~*
 
-# Logs
+# Log Files
 *.log
+logs/
+*.log.*
 
-# Database backups
+# Database Files
 *.sql
 *.sql.bak
 *.db
 *.sqlite
+*.sqlite3
+database.backup
 
-# Private keys and secrets
+# Sensitive Files
 *.pem
 *.key
 *.pub
+*.pfx
+*.p12
+*.p8
+.ssh/
+secrets/
 
-# Build artifacts
+# Build Artifacts
 /build/
 /dist/
+/out/
+/.env.production.local
+
+# CSS/JS Build Output
+assets/css/output.css
+public/assets/css/output.css
+
+# Compiled Assets (if using build tools)
+public/assets/js/*.min.js
+public/assets/css/*.min.css
+dist/
+build/
+
+# Testing
+/coverage/
+.phpunit.cache
+.phpunit.result.cache
+.phpunit.xml
+phpunit.xml
+*.coverage
+.nyc_output/
+
+# Documentation Generated
+/docs/generated/
+/docs/api/
+
+# IDE Cache
+.vscode/.history
+.history
+
+# Miscellaneous
+.env.php
+.env.development.php
+.env.production.php
+config.local.php
+debug.log
+error.log
+
+# Public Uploads (keep structure, ignore files)
+public/uploads/*
+!public/uploads/.gitkeep
+public/assets/uploads/*
+!public/assets/uploads/.gitkeep
+public/assets/img/profile/*
+!public/assets/img/profile/.gitkeep
+
+# Backup Files
+*.bak
+*.backup
+*.old
+*.orig
+
+# Docker (if using)
+.dockerignore
+docker-compose.override.yml
+
+# Local Development
+.editorconfig.local
+.env.dusk.local
+.env.testing.local
+
+# macOS
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+ehthumbs.db
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Common IDE temp files
+*.orig
+*.rej
+.svn/
+.git/
+.gitmodules
+
+# Miscellaneous
+.cache/
+.tmp/
+temp/
+tmp/
